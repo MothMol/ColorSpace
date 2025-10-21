@@ -1,0 +1,157 @@
+/* Подключение шрифтов */
+@font-face {
+    font-family: 'Constanta';
+    src: url('fonts/constanb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mistral';
+    src: url('fonts/MISTRAL.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro';
+    src: url('fonts/MyriadPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Stika';
+    src: url('fonts/SitkaVF.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SitkaIt';
+    src: url('fonts/SitkaVF-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Arial обычно уже установлен в системе, но можно и подключить */
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('fonts/arial.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*Классы*/
+
+.body {
+    background: linear-gradient(#F9F1ED, #DCD2C7);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.main {
+    background-color: #FFFFFF;
+    width: 1300px;
+    height: 5772.62px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
+
+    box-shadow: 0 10px 55px #7e746d;
+
+    position: relative;
+}
+
+/*Верхняя часть сайта*/
+.menu {
+    width: 1300px;
+    height: 244px;
+
+    margin: 0 auto;
+    display: flex;
+}
+
+/*Левая часть верхней части*/
+.menuLeft {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 110px;
+    padding-top: 55px;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+}
+
+.color-text {
+    font-family: 'Mistral';
+    font-size: 52px;
+    color: #42383C;
+    font-weight: normal;
+    margin-bottom: 0px;
+    /* Небольшой отступ между строками */
+}
+
+.space-text {
+    font-family: 'Stika';
+    font-size: 78px;
+    color: #42383C;
+    letter-spacing: 0px;
+    /*тут оказался не нужен, но пример пробелов между буквами*/
+    margin-top: -10px;
+}
+
+/*Центр верхней части*/
+.menu-text {
+    font-family: 'StikaIt';
+    font-size: 26px;
+    color: #42383C;
+
+}
+
+
+/*Нижняя часть сайта*/
+.footer {
+    background-color: #5B524D;
+    width: 1300px;
+    height: 244px;
+
+    text-align: center;
+    font-family: 'Stika';
+    font-size: 26px;
+    color: #C6AE91;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 20px 20px 0 0;
+
+        display: flex;
+    align-items: center; /*центрирование по горизонтали*/
+    justify-content: center; /*центрирование по вертикали*/
+     flex-direction: column;/*расположение друг под другом*/
+}
+/*сделать отдельно для текста*/
+.contact-text {
+
+}
+
+.mainFooter-text {
+
+}
+
+.gmail {
+
+}
