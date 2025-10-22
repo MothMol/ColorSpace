@@ -34,7 +34,7 @@
     font-style: italic;
 }
 
-/* Arial обычно уже установлен в системе, но можно и подключить */
+
 @font-face {
     font-family: 'Arial Custom';
     src: url('fonts/arial.ttf') format('truetype');
@@ -42,9 +42,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Constan';
+    src: url('fonts/constan.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 /*Классы*/
-
 .body {
     background: linear-gradient(#F9F1ED, #DCD2C7);
     margin-left: auto;
@@ -53,37 +59,43 @@
 }
 
 .main {
-    background-color: #FFFFFF;
     width: 1300px;
     height: 5772.62px;
+    background-color: #FFFFFF;
+
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
 
-
     box-shadow: 0 10px 55px #7e746d;
-
     position: relative;
 }
 
 /*Верхняя часть сайта*/
 .menu {
     width: 1300px;
-    height: 244px;
+    height: 160px;
 
     margin: 0 auto;
+
     display: flex;
+    align-items: center;/*центрирование по горизонтали*/
 }
+
 
 /*Левая часть верхней части*/
 .menuLeft {
     width: 20%;
     height: 100%;
+
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: relative;
+
     padding-left: 110px;
     padding-top: 55px;
+    
 }
 
 .brand {
@@ -97,34 +109,153 @@
     font-family: 'Mistral';
     font-size: 52px;
     color: #42383C;
-    font-weight: normal;
-    margin-bottom: 0px;
-    /* Небольшой отступ между строками */
+    margin-bottom: 0px;/* Небольшой отступ между строками */
 }
 
 .space-text {
     font-family: 'Stika';
     font-size: 78px;
     color: #42383C;
-    letter-spacing: 0px;
-    /*тут оказался не нужен, но пример пробелов между буквами*/
+    letter-spacing: 0px; /*тут оказался не нужен, но пример пробелов между буквами*/
     margin-top: -10px;
 }
 
 /*Центр верхней части*/
-.menu-text {
-    font-family: 'StikaIt';
+.menu-center {
+    text-align: center; /*центрирование по вертикали*/
+    margin-left: 60px;
+    margin-top: 80px;
+    white-space: nowrap;
+}
+
+.navigation {
+    display: flex;
+    gap: 45px; /* расстояние между элементами */
+    justify-content: center; /* Центрируем всю навигацию */
+    align-items: center;
+}
+
+
+.link-text {
+    font-family: 'SitkaIt';
     font-size: 26px;
     color: #42383C;
+    text-decoration: none !important; 
+}
+
+
+/*Правая часть верхней части*/
+.palka {
+ margin-top: 10%;
+ margin-left: 80px;
+ width: 250px;
+}
+
+
+/*О нас и главная*/
+.aboutUs {
+margin-left: auto;
+margin-right: auto;
+margin-top: 57px;
+width: 1130px;
+height: 590px; 
+border: 1px;
+border-radius: 100px 0px 100px 0px;
+border-style: solid;    
+border-color: #736357; 
+position: relative;
+}
+
+.aboutPhoto {
+    width: 512px;
+    height: 520px;
+    border-radius: 100px 0px 100px 0px;
+    background-color: #F9F9F9;
+    position: absolute;
+    left: 37px;
+    top: 34px;
+}
+
+.aboutText {
+    width: 457px;
+    height: 435px;
+    border-radius: 100px 0px 100px 0px;
+    background-color: #F0EFEB;
+    position: absolute;
+    right: 50px;
+    bottom: 34px;
+}
+
+.welcome-text {
+    font-family: 'Mistral';
+    font-size: 50px;
+    color: #524C4E;
+    text-decoration: none !important;
+    position: absolute;
+    top: 74px;
+    right: 77px;
+}
+
+.welcome-text2 {
+    font-family: 'Arial';
+    font-size: 21px;
+    color: #42383C;
+    text-decoration: none !important;
+    position: absolute;
+    top: 195px;
+    right: 108px;
+    text-align: justify;
+    text-justify: inter-word; /*Равномерное распределение пробелов*/
+    hyphens: auto; /*Автоперенос слов*/
+    text-indent: 100px;
+    
 
 }
 
+.circles-container {
+    height: 11px;
+    width: 49px;
+    display: flex;
+    gap: 8px; /* Расстояние между кружочками */
+    position: absolute;
+    bottom: 95px ;
+    right: 347px;
+} 
+
+.circle {
+    width: 15px;  
+    height: 15px; 
+    border-radius: 11px; /* Радиус 11px */
+    background-color: #FFFFFF; /* Цвет кружочков */
+}
+
+.aboutButton {
+    width: 135px;
+    height: 51px;
+    border-radius: 0px 100px 0px 0px;
+    background-color: #FFFFFF;
+    position: absolute;
+    right: 116px;
+    bottom: 76px;
+
+    display: flex;
+    align-items: center; /*центрирование по горизонтали*/
+    justify-content: center;/*центрирование по вертикали*/
+   
+}
+.button-text {
+    font-family: 'SitkaIt';
+    font-size: 19px;
+    color: #42383C;
+    text-decoration: none !important; 
+
+}
 
 /*Нижняя часть сайта*/
 .footer {
     background-color: #5B524D;
     width: 1300px;
-    height: 244px;
+    height: 220px;
 
     text-align: center;
     font-family: 'Stika';
@@ -138,20 +269,15 @@
 
     border-radius: 20px 20px 0 0;
 
-        display: flex;
+    display: flex;
     align-items: center; /*центрирование по горизонтали*/
-    justify-content: center; /*центрирование по вертикали*/
-     flex-direction: column;/*расположение друг под другом*/
+    justify-content: center;/*центрирование по вертикали*/
+    flex-direction: column;/*расположение друг под другом*/
 }
+
 /*сделать отдельно для текста*/
-.contact-text {
+.contact-text {}
 
-}
+.mainFooter-text {}
 
-.mainFooter-text {
-
-}
-
-.gmail {
-
-}
+.gmail {}
