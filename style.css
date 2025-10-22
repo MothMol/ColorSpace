@@ -234,6 +234,7 @@ position: relative;
     height: 51px;
     border-radius: 0px 100px 0px 0px;
     background-color: #FFFFFF;
+    border: none;
     position: absolute;
     right: 116px;
     bottom: 76px;
