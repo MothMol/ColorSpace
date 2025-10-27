@@ -1,138 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Space</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="body">
-
-    <!--Основной прямоугольник-->
     <div class="main">
-
-        <!--Меню-->
-        <br><br><br>
+        <!-- Меню -->
+         <br><br><br>
         <header class="header">
-
-            <!--Левая часть-->
             <div class="menuLeft">
                 <div class="brand">
                     <span class="color-text">Color</span>
                     <span class="space-text">SPACE.</span>
                 </div>
             </div>
-
-            <!--Центр часть-->
+            
             <nav class="navigation">
                 <a href="#" class="link-text">main page</a>
                 <a href="#" class="link-text">test</a>
                 <a href="#" class="link-text">about us</a>
                 <a href="#" class="link-text">contact</a>
             </nav>
-
-
-            <!--Правая часть-->
+            
             <div class="palka">
-                <img src="images/алка2.jpg" alt="Декоративный элементик">
+                <img src="images/алка2.jpg" alt="Декоративный элемент">
             </div>
         </header>
 
-
-        <!--О нас/главная страница-->
+        <!-- О нас -->
         <div class="aboutUs">
-
-            <!--Левый блок-->
             <div class="aboutPhoto"></div>
-
-            <!--Правый блок-->
             <div class="aboutText"></div>
-            <span class="welcome-text" style="top: 74px; right: 77px;">Здравствуйте,</span>
-            <span class="welcome-text2" id="text-content" style="top: 195px; right: 108px;">
-                Сдругойстороныпосто
-                дистскоеобеспечениенашейдеяте
-                льностипредставляетсобойинтере
-                сныйэкспериментпроверкисисте
-                ммассовогоучастия.Разнообразн
-                ыйибогатыйопытрамкииместоо
-                бучениякадровспособствуетподг</span>
+            <span class="welcome-text welcome-text-1">Здравствуйте,</span>
+            <span class="welcome-text2 welcome-text2-1" id="text-content"></span>
 
             <div class="circles-container">
                 <div class="circle" data-index="0"></div>
                 <div class="circle" data-index="1"></div>
                 <div class="circle" data-index="2"></div>
             </div>
-            <button class="Button" id="next-button" style="right: 116px; bottom: 76px;">
+            <button class="Button button-1" id="next-button">
                 <span class="button-text">click here</span>
             </button>
-
         </div>
 
-
-        <!--Выбор цвета-->
+        <!-- Выбор цвета -->
         <div class="changeColor">
-            <!--Выбор цвета-->
             <div class="quickCC-text">
-                <span style="font-size: 100px;">quick</span>
-                <span style="font-size: 40px;">color change</span>
-                <img src="images/палкаМенять.jpg" alt="Декоративный элементик" style="margin-top: 36px;">
+                <span class="quickCC-large">quick</span>
+                <span class="quickCC-small">color change</span>
+                <img src="images/палкаМенять.jpg" alt="Декоративный элемент" class="quickCC-img">
             </div>
 
-
-            <div>
-                <!--1 столбец-->
-                <button class="colorButton firstRow" data-color-name="ОРАНЖЕВЫЙ" data-text-color="#DD9166"
-                    style="background-image: url(images/кнопкиЦвет/оранж.jpg); box-shadow: 0 5px 50px #DD9166; margin-top: 559px;"></button>
-                <button class="colorButton firstRow" data-color-name="КРАСНЫЙ" data-text-color="#E27D7D"
-                    style="background-image: url(images/кнопкиЦвет/красный.jpg); box-shadow: 0 5px 50px #E27D7D; margin-top: 656px;"></button>
-                <button class="colorButton  firstRow" data-color-name="БОРДОВЫЙ" data-text-color="#964E4E"
-                    style="background-image: url(images/кнопкиЦвет/бордовый.jpg); box-shadow: 0 5px 50px #964E4E; margin-top: 761px;"></button>
-
-                <!--2 столбец-->
-                <button class="colorButton secondRow" data-color-name="ЖЁЛТЫЙ" data-text-color="#F7C977"
-                    style="background-image: url(images/кнопкиЦвет/желтый.jpg); box-shadow: 0 5px 50px #F7C977; margin-top: 559px;"></button>
-                <button class="colorButton secondRow" data-color-name="РОЗОВЫЙ" data-text-color="#F9AAAB"
-                    style="background-image: url(images/кнопкиЦвет/розовый.jpg); box-shadow: 0 5px 50px #F9AAAB; margin-top: 656px;"></button>
-                <button class="colorButton  secondRow" data-color-name="БИРЮЗОВЫЙ" data-text-color="#87CCBE"
-                    style="background-image: url(images/кнопкиЦвет/бирюзовый.jpg); box-shadow: 0 5px 50px #87CCBE; margin-top: 761px;"></button>
-
-                <!--3 столбец-->
-                <button class="colorButton thirdRow" data-color-name="ЗЕЛЁНЫЙ" data-text-color="#879354"
-                    style="background-image: url(images/кнопкиЦвет/зеленый.jpg); box-shadow: 0 5px 50px #BECC96; margin-top: 559px;"></button>
-                <button class="colorButton thirdRow" data-color-name="ФИОЛЕТОВЫЙ" data-text-color="#BC9FE2"
-                    style="background-image: url(images/кнопкиЦвет/фиолетовый.jpg); box-shadow: 0 5px 50px #BC9FE2; margin-top: 656px;"></button>
-                <button class="colorButton  thirdRow" data-color-name="СИНИЙ" data-text-color="#90A2DD"
-                    style="background-image: url(images/кнопкиЦвет/синий.jpg); box-shadow: 0 5px 50px #90A2DD; margin-top: 761px;"></button>
-
-                <!--4 столбец-->
-                <button class="colorButton fourthRow" data-color-name="СЕРЫЙ" data-text-color="#CBCBC9"
-                    style="background-image: url(images/кнопкиЦвет/серый.jpg); box-shadow: 0 5px 50px #CBCBC9; margin-top: 559px;"></button>
-                <button class="colorButton fourthRow" data-color-name="КОРИЧНЕВЫЙ" data-text-color="#8B7965"
-                    style="background-image: url(images/кнопкиЦвет/коричневый.jpg); box-shadow: 0 5px 50px #8B7965; margin-top: 656px;"></button>
-                <button class="colorButton  fourthRow" data-color-name="ЧЁРНЫЙ" data-text-color="#606060"
-                    style="background-image: url(images/кнопкиЦвет/черный.jpg); box-shadow: 0 5px 50px #606060; margin-top: 761px;"></button>
-
+            <div id="color-buttons-container">
+                <!-- Кнопки генерируются через JavaScript -->
             </div>
 
             <div class="confirmColor">
-                <span class="welcome-text2" style="top: 95px; right: 240px; font-size: 24px">Поменять цвет на</span>
-                <span class="welcome-text" id="selected-color-text"
-                    style="top: 127px; left: 104px; font-size: 87px; color: #e2e1df;">ВЫБЕРИТЕ</span>
-
-                <button class="Button" id="confirm-color-button" style="right: 190px; bottom: 34px;">
+                <span class="welcome-text2 welcome-text2-2">Поменять цвет на</span>
+                <span class="welcome-text welcome-text-2" id="selected-color-text">ВЫБЕРИТЕ</span>
+                <button class="Button button-2" id="confirm-color-button">
                     <span class="button-text">confirm</span>
                 </button>
             </div>
         </div>
 
-        <!--Тест!!!-->
+        <!-- Тест -->
         <div class="test">
             <button class="testButton">
-                <span class="startTest-text" style="font-size: 58px; margin-bottom: 0px;">START</span>
-                <span class="startTest-text" style="font-size: 31px; margin-top: 0px;">the test</span>
+                <span class="startTest-text startTest-large">START</span>
+                <span class="startTest-text startTest-small">the test</span>
                 <div class="firstFlower"></div>
                 <div class="secondFlower"></div>
                 <div class="thirdFlower"></div>
@@ -140,64 +81,42 @@
                 <div class="fifthFlower"></div>
             </button>
 
-            <!--Лево-->
-            <div class="result1-3">
-                <!--Результат 1-->
-                <div class="res1-3">
-                    <span class="description" style="font-size: 34px; bottom: 132px; left: 40px;">
-                        Вы как личность
-                    </span>
-                    <span class="description" style="font-size: 21px; bottom: 40px; left: 40px;">
-                         Будет дано описание человека как личности в зависимости от его любимого цвета.
+            <div class="result result-1">
+                <div class="res res-1-3">
+                    <span class="description desc-title">Вы как личность</span>
+                    <span class="description desc-text">
+                        Будет дано описание человека как личности в зависимости от его любимого цвета.
                     </span>
                 </div>
-
-
             </div>
-            <!--Центр-->
-            <div class="result2">
-                <!--Результат 2-->
-                <div class="res2">
-                    <span class="description" style="font-size: 34px; bottom: 132px; left: 40px;">
-                        Влияние на человека
-                    </span>
-                    <span class="description" style="font-size: 21px; bottom: 40px; left: 40px;">
+
+            <div class="result result-2">
+                <div class="res res-2">
+                    <span class="description desc-title">Влияние на человека</span>
+                    <span class="description desc-text">
                         Будет дано описание того, как определенный цвет влияет на человека.
                     </span>
                 </div>
             </div>
 
-
-            <!--Право-->
-            <div class="result1-3" style="right: 0;">
-
-                <!--Результат 3-->
-                <div class="res1-3">
-                    <span class="description" style="font-size: 34px; bottom: 132px; left: 40px;">
-                        Ваш цвет как музыка
-                    </span>
-                    <span class="description" style="font-size: 21px; bottom: 40px; left: 40px;">
+            <div class="result result-3">
+                <div class="res res-1-3">
+                    <span class="description desc-title">Ваш цвет как музыка</span>
+                    <span class="description desc-text">
                         Будет дано описание жанра музыки, который ассоциируется у многих с определенным цветом.
                     </span>
                 </div>
             </div>
-
         </div>
 
-
-
-        <!--Подвал-->
+        <!-- Подвал -->
         <footer class="footer">
-            <span>Contact</span>
-            <span>Можете присылать свои хвалебные письма на нашу почту</span><br>
-            <span>POCHTA@gmail.com</span>
+            <span class="contact-text">Contact</span>
+            <span class="mainFooter-text">Можете присылать свои хвалебные письма на нашу почту</span><br>
+            <span class="gmail">POCHTA@gmail.com</span>
         </footer>
-
     </div>
-
-
 
     <script src="script.js"></script>
 </body>
-
 </html>

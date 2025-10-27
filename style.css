@@ -34,7 +34,6 @@
     font-style: italic;
 }
 
-
 @font-face {
     font-family: 'Arial Custom';
     src: url('fonts/arial.ttf') format('truetype');
@@ -49,7 +48,6 @@
     font-style: normal;
 }
 
-
 /*Классы*/
 .body {
     background: linear-gradient(#F9F1ED, #DCD2C7);
@@ -63,11 +61,9 @@
     width: 1300px;
     height: 5772.62px;
     background-color: #FFFFFF;
-
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-
     box-shadow: 0 10px 55px #7e746d;
     position: relative;
 }
@@ -76,28 +72,21 @@
 .header {
     width: 100%;
     height: 160px;
-
     margin: 0 auto;
-
     display: flex;
     align-items: center;
-    /*центрирование по горизонтали*/
 }
-
 
 /*Левая часть верхней части*/
 .menuLeft {
     width: 20%;
     height: 100%;
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
     position: relative;
-
     padding-left: 110px;
     padding-top: 55px;
-
 }
 
 .brand {
@@ -112,7 +101,6 @@
     font-size: 52px;
     color: #42383C;
     margin-bottom: 0px;
-    /* Небольшой отступ между строками */
 }
 
 .space-text {
@@ -120,7 +108,6 @@
     font-size: 78px;
     color: #42383C;
     letter-spacing: 0px;
-    /*тут оказался не нужен, но пример пробелов между буквами*/
     margin-top: -10px;
 }
 
@@ -128,17 +115,13 @@
 .navigation {
     display: flex;
     gap: 45px;
-    /* расстояние между элементами */
     justify-content: center;
-    /* Центрируем всю навигацию */
     align-items: center;
     text-align: center;
-    /*центрирование по вертикали*/
     margin-left: 60px;
     margin-top: 80px;
     white-space: nowrap;
 }
-
 
 .link-text {
     font-family: 'SitkaIt';
@@ -147,14 +130,12 @@
     text-decoration: none !important;
 }
 
-
 /*Правая часть верхней части*/
 .palka {
     margin-top: 10%;
     margin-left: 80px;
     width: 250px;
 }
-
 
 /*О нас и главная*/
 .aboutUs {
@@ -206,13 +187,9 @@
     position: absolute;
     text-align: justify;
     text-justify: inter-word;
-    /*Равномерное распределение пробелов*/
     hyphens: auto;
-    /*Автоперенос слов*/
     text-indent: 100px;
-    width: 340px
-    
-
+    width: 340px;
 }
 
 .circles-container {
@@ -220,7 +197,6 @@
     width: 49px;
     display: flex;
     gap: 8px;
-    /* Расстояние между кружочками */
     position: absolute;
     bottom: 95px;
     right: 347px;
@@ -230,15 +206,13 @@
     width: 15px;
     height: 15px;
     border-radius: 11px;
-    /* Радиус 11px */
     background-color: #FFFFFF;
-    /* Цвет кружочков */
     border: 2px solid transparent;
     transition: border-color 0.3s ease;
 }
 
 .circle.active {
-    border-color: #736357; /* Обводка активного кружка */
+    border-color: #736357;
 }
 
 .Button {
@@ -248,14 +222,10 @@
     background-color: #FFFFFF;
     border: none;
     position: absolute;
-
     display: flex;
     align-items: center;
-    /*центрирование по горизонтали*/
     justify-content: center;
-    /*центрирование по вертикали*/
     cursor: pointer;
-
 }
 
 .button-text {
@@ -263,7 +233,6 @@
     font-size: 19px;
     color: #42383C;
     text-decoration: none !important;
-
 }
 
 /*Выбор цвета*/
@@ -272,9 +241,7 @@
     height: 1016px;
     text-align: center;
     position: relative;
-
     display: flex;
-    /*background-color: #524C4E;*/
 }
 
 .quickCC-text {
@@ -316,9 +283,7 @@
 .fourthRow {
     width: 62.58px;
     margin-left: 543px;
-
 }
-
 
 .confirmColor {
     width: 585px;
@@ -343,7 +308,6 @@
     width: 100%;
     height: 570px;
     cursor: pointer;
-    
     border: none;
     display: flex;
     flex-direction: column;
@@ -447,31 +411,148 @@
     background-color: #5B524D;
     width: 1300px;
     height: 220px;
-
     text-align: center;
     font-family: 'Stika';
     font-size: 26px;
     color: #C6AE91;
-
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-
     border-radius: 20px 20px 0 0;
-
     display: flex;
     align-items: center;
-    /*центрирование по горизонтали*/
     justify-content: center;
-    /*центрирование по вертикали*/
     flex-direction: column;
-    /*расположение друг под другом*/
 }
 
-/*сделать отдельно для текста*/
-.contact-text {}
+/* Новые стили для позиционирования */
+.welcome-text-1 {
+    top: 74px;
+    right: 77px;
+}
 
-.mainFooter-text {}
+.welcome-text2-1 {
+    top: 195px;
+    right: 108px;
+}
 
-.gmail {}
+.welcome-text2-2 {
+    top: 95px;
+    right: 240px;
+    font-size: 24px;
+}
+
+.welcome-text-2 {
+    top: 127px;
+    left: 104px;
+    font-size: 87px;
+    color: #e2e1df;
+}
+
+.button-1 {
+    right: 116px;
+    bottom: 76px;
+}
+
+.button-2 {
+    right: 190px;
+    bottom: 34px;
+}
+
+.quickCC-large {
+    font-size: 100px;
+}
+
+.quickCC-small {
+    font-size: 40px;
+}
+
+.quickCC-img {
+    margin-top: 36px;
+}
+
+.startTest-large {
+    font-size: 58px;
+    margin-bottom: 0px;
+}
+
+.startTest-small {
+    font-size: 31px;
+    margin-top: 0px;
+}
+
+/* Стили для позиционирования цветных кнопок */
+.colorButton.top-559 { margin-top: 559px; }
+.colorButton.top-656 { margin-top: 656px; }
+.colorButton.top-761 { margin-top: 761px; }
+
+/* Стили для тестовых блоков */
+.result-1 {
+    width: 433px;
+    height: 445px;
+    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.result-2 {
+    width: 434px;
+    height: 445px;
+    background-image: url(images/тест/что\ будет/проверка.jpg);
+    position: absolute;
+    bottom: 0;
+    left: 433px;
+}
+
+.result-3 {
+    width: 433px;
+    height: 445px;
+    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.res-1-3 {
+    width: 433px;
+    height: 223px;
+    background-color: #6d625b55;
+    position: absolute;
+    bottom: 0;
+}
+
+.res-2 {
+    width: 434px;
+    height: 223px;
+    background-color: #ff000055;
+    position: absolute;
+    bottom: 0;
+}
+
+.desc-title {
+    font-size: 34px;
+    bottom: 132px;
+    left: 40px;
+}
+
+.desc-text {
+    font-size: 21px;
+    bottom: 40px;
+    left: 40px;
+}
+
+/* Стили для цветов кнопок */
+.color-orange { background-color: #DD9166; box-shadow: 0 5px 50px #DD9166; }
+.color-red { background-color: #E27D7D; box-shadow: 0 5px 50px #E27D7D; }
+.color-burgundy { background-color: #964E4E; box-shadow: 0 5px 50px #964E4E; }
+.color-yellow { background-color: #F7C977; box-shadow: 0 5px 50px #F7C977; }
+.color-pink { background-color: #F9AAAB; box-shadow: 0 5px 50px #F9AAAB; }
+.color-turquoise { background-color: #87CCBE; box-shadow: 0 5px 50px #87CCBE; }
+.color-green { background-color: #BECC96; box-shadow: 0 5px 50px #BECC96; }
+.color-purple { background-color: #BC9FE2; box-shadow: 0 5px 50px #BC9FE2; }
+.color-blue { background-color: #90A2DD; box-shadow: 0 5px 50px #90A2DD; }
+.color-gray { background-color: #CBCBC9; box-shadow: 0 5px 50px #CBCBC9; }
+.color-brown { background-color: #8B7965; box-shadow: 0 5px 50px #8B7965; }
+.color-black { background-color: #606060; box-shadow: 0 5px 50px #606060; }
