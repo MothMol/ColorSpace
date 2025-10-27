@@ -491,7 +491,7 @@
 .result-1 {
     width: 433px;
     height: 445px;
-    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
+    background-image: url(images/тест/что\ будет/собак.jpg);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -500,7 +500,7 @@
 .result-2 {
     width: 434px;
     height: 445px;
-    background-image: url(images/тест/что\ будет/проверка.jpg);
+    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
     position: absolute;
     bottom: 0;
     left: 433px;
@@ -509,7 +509,7 @@
 .result-3 {
     width: 433px;
     height: 445px;
-    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
+    background-image: url(images/тест/что\ будет/собак.jpg);
     position: absolute;
     bottom: 0;
     right: 0;
@@ -526,7 +526,7 @@
 .res-2 {
     width: 434px;
     height: 223px;
-    background-color: #ff000055;
+    background-color: #6d625b55;
     position: absolute;
     bottom: 0;
 }
@@ -556,3 +556,175 @@
 .color-gray { background-color: #CBCBC9; box-shadow: 0 5px 50px #CBCBC9; }
 .color-brown { background-color: #8B7965; box-shadow: 0 5px 50px #8B7965; }
 .color-black { background-color: #606060; box-shadow: 0 5px 50px #606060; }
+
+
+.mwl {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.mwl-text {
+    position: absolute;
+    font-family: 'Stika';
+    font-size: 78px;
+    color: #42383C;
+    top: 123px;
+    left: 440px;
+}
+
+.wot-text {
+    position: absolute;
+    font-family: 'Mistral';
+    font-size: 47.25px;
+    color: #EED7C4;
+    top: 200px;
+    left: 543.5px;
+}
+
+.palkamwl {
+    position: absolute;
+    width: 247px;
+    top: 276.64px;
+    left: 526px;
+    height: auto;
+}
+
+
+.team {
+    width: 100%;
+    height: 2172px;
+}
+
+
+.ksa {
+    position: relative;
+    width: 100%;
+    height: 724px;
+}
+
+
+ 
+.border1 {
+    position: absolute;
+    width: 591.94px;
+    height: 621.11px;
+    left: 67px;
+}
+ 
+.imgKS {
+    position: absolute;
+    width: 536.94px;
+    height: 583px;
+    border-radius: 100px 0px 100px 0px;
+    background-image: url(images/тест/что\ будет/собак.jpg);
+    left: 77px;
+    top: 27.5px;
+}
+
+.aboutKS {
+    position: absolute;
+    width: 721px; 
+    height: 436.36px;
+    border-radius: 100px 0px 0px 0px;
+    background-color: #F0EFEB;
+    right: 0;
+    top: 88.5px;
+    box-shadow: 0 5px 50px #F0EFEB;
+} 
+
+.postsKSA {
+    position: absolute ;
+    width: 300px;
+    height: 20px;
+    font-family: 'Sitka';
+    font-size: 16px;
+    color: #C6AE91;
+    top: 46px;
+    left: 94px;
+}
+
+.nameKSA {
+    position: absolute ;
+    width: 300px;
+    height: 50px;
+    font-family: 'Constanta';
+    font-size: 35px;
+    color: #42383C;
+    top: 66px;
+    left: 89px;
+}
+
+.textKSA {
+    position: absolute ;
+    width: 500px;
+    height: 160px;
+    font-family: 'Arial';
+    font-size: 20px;
+    color: #42383C;
+    top: 147px;
+    left: 89px;
+}
+
+.buttonKS {
+    position: absolute;
+    font-family: 'Sitka';
+    font-size: 20px;
+    width: 134px;
+    height: 57px;
+    cursor: pointer;
+    border: none;
+    background-color: #FFFFFF;
+    right: 88px;
+    bottom: 46px;
+    border-radius: 50px 0px 0px 0px;
+}
+
+/*Альбина*/
+.border2 {
+    position: absolute;
+    width: 591.94px;
+    height: 621.11px;
+    right: 67px;
+}
+ 
+.imgA {
+    position: absolute;
+    width: 536.94px;
+    height: 583px;
+    border-radius: 100px 0px 100px 0px;
+    background-image: url(images/тест/что\ будет/собак.jpg);
+    right: 70px;
+    top: 3px;
+}
+
+.aboutA {
+    position: absolute;
+    width: 721px; 
+    height: 436.36px;
+    border-radius: 0px 100px 0px 0px;
+    background-color: #F0EFEB;
+    left: 0;
+    top: 88.5px;
+    box-shadow: 0 5px 50px #F0EFEB;
+} 
+
+
+
+.buttonA {
+    position: absolute;
+    font-family: 'Sitka';
+    font-size: 20px;
+    width: 134px;
+    height: 57px;
+    cursor: pointer;
+    border: none;
+    background-color: #FFFFFF;
+    left: 88px;
+    bottom: 46px;
+    border-radius: 0px 50px 0px 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}

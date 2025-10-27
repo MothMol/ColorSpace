@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         
         const texts = [
-            `Альбина, Соня и Катя, <br> 
+            `Альбина, Соня и Катя <br> 
             рады приветствовать вас <br>
             на нашем сайте, созданном <br>
             в рамках изучения дисциплины <br>
