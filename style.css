@@ -408,8 +408,6 @@
     text-align: left;
 }
 
-
-
 /* Новые стили для позиционирования */
 .welcome-text-1 {
     top: 74px;
@@ -596,7 +594,6 @@
     box-shadow: 0 5px 50px #606060;
 }
 
-
 .mwl {
     width: 100%;
     height: 400px;
@@ -629,20 +626,16 @@
     height: auto;
 }
 
-
 .team {
     width: 100%;
     height: 2172px;
 }
-
 
 .ksa {
     position: relative;
     width: 100%;
     height: 724px;
 }
-
-
 
 .border1 {
     position: absolute;
@@ -748,8 +741,6 @@
     box-shadow: 0 5px 50px #F0EFEB;
 }
 
-
-
 .buttonA {
     position: absolute;
     font-family: 'Sitka';
@@ -767,7 +758,6 @@
 html {
     scroll-behavior: smooth;
 }
-
 
 /*Нижняя часть сайта*/
 .footer {
@@ -788,5 +778,3 @@ html {
     justify-content: center;
     flex-direction: column;
 }
-
-

@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
 
         const container = document.getElementById('color-buttons-container');
-        const isMobile = window.innerWidth <= 768;
 
         colors.forEach(color => {
             const button = document.createElement('button');
@@ -27,43 +26,18 @@ document.addEventListener('DOMContentLoaded', function () {
             button.setAttribute('data-color-name', color.displayName);
             button.setAttribute('data-text-color', color.textColor);
             
-            // ВСЕГДА используем изображения для кнопок
+            // Используем изображения для кнопок
             button.style.backgroundImage = `url(images/кнопкиЦвет/${color.name}.jpg)`;
-            // УБИРАЕМ ЧЕРНУЮ ТЕНЬ - оставляем только цветную тень
-            button.style.boxShadow = `0 5px 25px ${color.bgColor}80`; // добавляем прозрачность
+            button.style.boxShadow = `0 5px 25px ${color.bgColor}80`;
             
-            // На мобильных только адаптируем размеры и позиционирование
-            if (isMobile) {
-                button.style.backgroundSize = 'cover';
-                button.style.backgroundPosition = 'center';
-                button.style.backgroundRepeat = 'no-repeat';
-            }
-            
-            // Добавляем эффект пульсации при наведении (только для компьютера)
+            // Добавляем эффект пульсации при наведении
             button.addEventListener('mouseenter', function() {
-                if (!isMobile) {
-                    this.style.animation = 'pulse 2s ease-in-out infinite';
-                }
+                this.style.animation = 'pulse 2s ease-in-out infinite';
             });
             
             button.addEventListener('mouseleave', function() {
                 this.style.animation = 'none';
                 this.style.transform = 'scale(1)';
-            });
-
-            // Для мобильных - улучшенная обратная связь при касании
-            button.addEventListener('touchstart', function() {
-                if (isMobile) {
-                    this.style.transform = 'scale(0.95)';
-                    this.style.opacity = '0.9';
-                }
-            });
-
-            button.addEventListener('touchend', function() {
-                if (isMobile) {
-                    this.style.transform = 'scale(1)';
-                    this.style.opacity = '1';
-                }
             });
             
             container.appendChild(button);
@@ -116,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateDisplay();
         });
 
-        // Добавляем клик по кружкам для мобильных
+        // Добавляем клик по кружкам
         circles.forEach((circle, index) => {
             circle.addEventListener('click', function() {
                 currentIndex = index;
@@ -137,19 +111,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         colorButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const isMobile = window.innerWidth <= 768;
-                
                 // Убираем выделение с предыдущей кнопки
                 if (selectedButton) {
                     selectedButton.style.transform = 'scale(1)';
                 }
                 
-                // Выделяем новую кнопку БЕЗ ОБВОДКИ И ТЕНИ
-                if (isMobile) {
-                    this.style.transform = 'scale(0.95)';
-                } else {
-                    this.style.transform = 'scale(1.05)';
-                }
+                // Выделяем новую кнопку
+                this.style.transform = 'scale(1.05)';
                 selectedButton = this;
                 
                 const colorName = this.getAttribute('data-color-name');
@@ -168,11 +136,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
                     
-                    // Красивое уведомление вместо alert
-                    showBootstrapNotification(`Оформление изменено на "${selectedColor}"`, 'success');
+                    // Уведомление
+                    showNotification(`Оформление изменено на "${selectedColor}"`, 'success');
                 }, 150);
             } else {
-                showBootstrapNotification("Пожалуйста, выберите цвет сначала!", 'warning');
+                showNotification("Пожалуйста, выберите цвет сначала!", 'warning');
             }
         });
     }
@@ -250,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.style.transform = 'translateY(-2px) scale(0.98)';
                 setTimeout(() => {
                     this.style.transform = 'translateY(-4px)';
-                    showBootstrapNotification('Спасибо за интерес к нашей команде! 🎨', 'info');
+                    showNotification('Спасибо за интерес к нашей команде! 🎨', 'info');
                 }, 150);
             });
         });
@@ -286,55 +254,56 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Функция для улучшения навигации на мобильных устройствах
-    function enhanceMobileNavigation() {
-        if (window.innerWidth <= 768) {
-            const navLinks = document.querySelectorAll('.link-text');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        // Используем Bootstrap smooth scroll
-                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-    }
-
-    // Функция для показа Bootstrap уведомлений
-    function showBootstrapNotification(message, type = 'info') {
+    // Функция для показа уведомлений
+    function showNotification(message, type = 'info') {
         // Создаем элемент уведомления
         const notification = document.createElement('div');
-        notification.className = `alert alert-${type} alert-dismissible fade show`;
+        notification.className = `custom-notification custom-notification-${type}`;
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
             min-width: 300px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.3s ease;
         `;
         
-        notification.innerHTML = `
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        `;
+        // Устанавливаем цвет в зависимости от типа
+        const colors = {
+            success: '#28a745',
+            warning: '#ffc107',
+            info: '#17a2b8',
+            error: '#dc3545'
+        };
+        
+        notification.style.backgroundColor = colors[type] || colors.info;
+        notification.textContent = message;
         
         document.body.appendChild(notification);
         
+        // Анимация появления
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 10);
+        
         // Автоматически скрываем через 3 секунды
         setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100px)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
         }, 3000);
     }
 
@@ -356,22 +325,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         
-        /* Bootstrap-like animations */
-        .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(-15px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
         /* Плавные переходы по умолчанию */
         .Button, .buttonKS, .buttonA, .link-text {
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
@@ -383,21 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
     generateColorButtons();
     initTextSlider();
     initButtonAnimations();
-    enhanceMobileNavigation();
 
     // Ждем немного перед инициализацией цветного меню, чтобы кнопки успели сгенерироваться
     setTimeout(initColorChanger, 100);
-
-    // Обработчик изменения размера окна
-    window.addEventListener('resize', function() {
-        // При изменении размера пересоздаем кнопки для адаптации
-        const container = document.getElementById('color-buttons-container');
-        container.innerHTML = '';
-        generateColorButtons();
-        setTimeout(initColorChanger, 100);
-        enhanceMobileNavigation();
-    });
-
-    // Добавляем класс для плавного появления контента
-    document.body.classList.add('fade-in');
 });
