@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.scrollTo(0, 0);
+
+document.addEventListener('DOMContentLoaded', function () {
     // Генерация цветных кнопок
     function generateColorButtons() {
         const colors = [
@@ -17,14 +19,53 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
 
         const container = document.getElementById('color-buttons-container');
-        
+        const isMobile = window.innerWidth <= 768;
+
         colors.forEach(color => {
             const button = document.createElement('button');
             button.className = `colorButton ${color.row} ${color.top}`;
             button.setAttribute('data-color-name', color.displayName);
             button.setAttribute('data-text-color', color.textColor);
+            
+            // ВСЕГДА используем изображения для кнопок
             button.style.backgroundImage = `url(images/кнопкиЦвет/${color.name}.jpg)`;
-            button.style.boxShadow = `0 5px 50px ${color.bgColor}`;
+            // УБИРАЕМ ЧЕРНУЮ ТЕНЬ - оставляем только цветную тень
+            button.style.boxShadow = `0 5px 25px ${color.bgColor}80`; // добавляем прозрачность
+            
+            // На мобильных только адаптируем размеры и позиционирование
+            if (isMobile) {
+                button.style.backgroundSize = 'cover';
+                button.style.backgroundPosition = 'center';
+                button.style.backgroundRepeat = 'no-repeat';
+            }
+            
+            // Добавляем эффект пульсации при наведении (только для компьютера)
+            button.addEventListener('mouseenter', function() {
+                if (!isMobile) {
+                    this.style.animation = 'pulse 2s ease-in-out infinite';
+                }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.animation = 'none';
+                this.style.transform = 'scale(1)';
+            });
+
+            // Для мобильных - улучшенная обратная связь при касании
+            button.addEventListener('touchstart', function() {
+                if (isMobile) {
+                    this.style.transform = 'scale(0.95)';
+                    this.style.opacity = '0.9';
+                }
+            });
+
+            button.addEventListener('touchend', function() {
+                if (isMobile) {
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '1';
+                }
+            });
+            
             container.appendChild(button);
         });
     }
@@ -34,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const circles = document.querySelectorAll('.circle');
         const textElement = document.getElementById('text-content');
         const nextButton = document.getElementById('next-button');
-        
+
         let currentIndex = 0;
-        
+
         const texts = [
             `Альбина, Соня и Катя <br> 
             рады приветствовать вас <br>
@@ -44,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             в рамках изучения дисциплины <br>
             "инструментальные средства <br>
             разработки ПО".`,
-            
+
             `Наш проект создан,<br> 
             в первую очередь,<br> 
             для творческого самовыражения <br> 
@@ -52,27 +93,35 @@ document.addEventListener('DOMContentLoaded', function() {
             а уже затем —<br>
             как вспомогательный инструмент<br>
             для дизайнеров и художников.`,
-            
-           `Откройте для себя <br> 
+
+            `Откройте для себя <br> 
            разнообразие стилей! <br> 
             Выберите готовое оформление <br> 
             или пройдите тест, <br> 
             по результатам которого<br>
             оформление будет изменено.<br> <br>Приятного просмотра! 🌸`
         ];
-        
+
         function updateDisplay() {
             circles.forEach(circle => {
                 circle.classList.remove('active');
             });
-            
+
             circles[currentIndex].classList.add('active');
             textElement.innerHTML = texts[currentIndex];
         }
-        
-        nextButton.addEventListener('click', function() {
+
+        nextButton.addEventListener('click', function () {
             currentIndex = (currentIndex + 1) % 3;
             updateDisplay();
+        });
+
+        // Добавляем клик по кружкам для мобильных
+        circles.forEach((circle, index) => {
+            circle.addEventListener('click', function() {
+                currentIndex = index;
+                updateDisplay();
+            });
         });
 
         updateDisplay();
@@ -83,27 +132,272 @@ document.addEventListener('DOMContentLoaded', function() {
         const colorButtons = document.querySelectorAll('.colorButton');
         const colorNameElement = document.getElementById('selected-color-text');
         const confirmColorButton = document.getElementById('confirm-color-button');
-        
+
+        let selectedButton = null;
+
         colorButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
+                const isMobile = window.innerWidth <= 768;
+                
+                // Убираем выделение с предыдущей кнопки
+                if (selectedButton) {
+                    selectedButton.style.transform = 'scale(1)';
+                }
+                
+                // Выделяем новую кнопку БЕЗ ОБВОДКИ И ТЕНИ
+                if (isMobile) {
+                    this.style.transform = 'scale(0.95)';
+                } else {
+                    this.style.transform = 'scale(1.05)';
+                }
+                selectedButton = this;
+                
                 const colorName = this.getAttribute('data-color-name');
                 const textColor = this.getAttribute('data-text-color');
-                
+
                 colorNameElement.textContent = colorName;
                 colorNameElement.style.color = textColor;
             });
         });
 
-        confirmColorButton.addEventListener('click', function() {
+        confirmColorButton.addEventListener('click', function () {
             const selectedColor = colorNameElement.textContent;
-            alert(`Оформление изменено на "${selectedColor}"`);
+            if (selectedColor !== "ВЫБЕРИТЕ") {
+                // Анимация подтверждения
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    
+                    // Красивое уведомление вместо alert
+                    showBootstrapNotification(`Оформление изменено на "${selectedColor}"`, 'success');
+                }, 150);
+            } else {
+                showBootstrapNotification("Пожалуйста, выберите цвет сначала!", 'warning');
+            }
         });
     }
+
+    // Функция для добавления анимаций ко всем кнопкам
+    function initButtonAnimations() {
+        // Добавляем CSS transitions для плавности
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Плавные переходы для всех кнопок */
+            .Button, .buttonKS, .buttonA, .link-text {
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
+            
+            /* Плавные переходы для кнопок выбора цвета */
+            .colorButton {
+                transition: all 0.3s ease-in-out !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Кнопки "click here" и "confirm"
+        const mainButtons = document.querySelectorAll('.Button');
+        mainButtons.forEach(button => {
+            // Сохраняем оригинальные стили
+            const originalBgColor = button.style.backgroundColor || '#FFFFFF';
+            const originalTransform = button.style.transform || 'translateY(0)';
+            
+            button.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#736357';
+                this.style.transform = 'translateY(-4px)';
+                this.style.boxShadow = '0 8px 20px rgba(115, 99, 87, 0.3)';
+                const buttonText = this.querySelector('.button-text');
+                if (buttonText) {
+                    buttonText.style.color = '#FFFFFF';
+                    buttonText.style.transition = 'color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = originalBgColor;
+                this.style.transform = originalTransform;
+                this.style.boxShadow = 'none';
+                const buttonText = this.querySelector('.button-text');
+                if (buttonText) {
+                    buttonText.style.color = '#42383C';
+                }
+            });
+        });
+
+        // Кнопки команды "woah!"
+        const teamButtons = document.querySelectorAll('.buttonKS, .buttonA');
+        teamButtons.forEach(button => {
+            // Сохраняем оригинальные стили
+            const originalBgColor = button.style.backgroundColor || '#FFFFFF';
+            const originalTransform = button.style.transform || 'translateY(0)';
+            const originalColor = button.style.color || '#42383C';
+            
+            button.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#736357';
+                this.style.transform = 'translateY(-4px)';
+                this.style.color = '#FFFFFF';
+                this.style.boxShadow = '0 8px 20px rgba(115, 99, 87, 0.3)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = originalBgColor;
+                this.style.transform = originalTransform;
+                this.style.color = originalColor;
+                this.style.boxShadow = 'none';
+            });
+
+            button.addEventListener('click', function() {
+                // Анимация нажатия для кнопок команды
+                this.style.transform = 'translateY(-2px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-4px)';
+                    showBootstrapNotification('Спасибо за интерес к нашей команде! 🎨', 'info');
+                }, 150);
+            });
+        });
+
+        // Навигационные ссылки
+        const navLinks = document.querySelectorAll('.link-text');
+        navLinks.forEach(link => {
+            const originalColor = link.style.color || '#42383C';
+            const originalTransform = link.style.transform || 'translateY(0)';
+            
+            link.addEventListener('mouseenter', function() {
+                this.style.color = '#736357';
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.color = originalColor;
+                this.style.transform = originalTransform;
+            });
+        });
+
+        // Кнопки выбора цвета - только пульсация
+        const colorButtons = document.querySelectorAll('.colorButton');
+        colorButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.animation = 'pulse 2s ease-in-out infinite';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.animation = 'none';
+                this.style.transform = 'scale(1)';
+            });
+        });
+    }
+
+    // Функция для улучшения навигации на мобильных устройствах
+    function enhanceMobileNavigation() {
+        if (window.innerWidth <= 768) {
+            const navLinks = document.querySelectorAll('.link-text');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Используем Bootstrap smooth scroll
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+    }
+
+    // Функция для показа Bootstrap уведомлений
+    function showBootstrapNotification(message, type = 'info') {
+        // Создаем элемент уведомления
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} alert-dismissible fade show`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        
+        notification.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 3000);
+    }
+
+    // Обновляем анимацию пульсации для большей плавности
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            }
+            50% { 
+                transform: scale(1.03); 
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            }
+            100% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            }
+        }
+        
+        /* Bootstrap-like animations */
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        /* Плавные переходы по умолчанию */
+        .Button, .buttonKS, .buttonA, .link-text {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+    `;
+    document.head.appendChild(style);
 
     // Инициализация всех функций
     generateColorButtons();
     initTextSlider();
-    
+    initButtonAnimations();
+    enhanceMobileNavigation();
+
     // Ждем немного перед инициализацией цветного меню, чтобы кнопки успели сгенерироваться
     setTimeout(initColorChanger, 100);
+
+    // Обработчик изменения размера окна
+    window.addEventListener('resize', function() {
+        // При изменении размера пересоздаем кнопки для адаптации
+        const container = document.getElementById('color-buttons-container');
+        container.innerHTML = '';
+        generateColorButtons();
+        setTimeout(initColorChanger, 100);
+        enhanceMobileNavigation();
+    });
+
+    // Добавляем класс для плавного появления контента
+    document.body.classList.add('fade-in');
 });

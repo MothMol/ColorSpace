@@ -312,9 +312,11 @@
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
+     text-decoration: none !important;
 }
 
 .startTest-text {
+    color: #42383C;
     margin: auto;
     font-family: 'Sitka';
     text-align: center;
@@ -406,25 +408,7 @@
     text-align: left;
 }
 
-/*Нижняя часть сайта*/
-.footer {
-    background-color: #5B524D;
-    width: 1300px;
-    height: 220px;
-    text-align: center;
-    font-family: 'Stika';
-    font-size: 26px;
-    color: #C6AE91;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+
 
 /* Новые стили для позиционирования */
 .welcome-text-1 {
@@ -483,9 +467,17 @@
 }
 
 /* Стили для позиционирования цветных кнопок */
-.colorButton.top-559 { margin-top: 559px; }
-.colorButton.top-656 { margin-top: 656px; }
-.colorButton.top-761 { margin-top: 761px; }
+.colorButton.top-559 {
+    margin-top: 559px;
+}
+
+.colorButton.top-656 {
+    margin-top: 656px;
+}
+
+.colorButton.top-761 {
+    margin-top: 761px;
+}
 
 /* Стили для тестовых блоков */
 .result-1 {
@@ -544,18 +536,65 @@
 }
 
 /* Стили для цветов кнопок */
-.color-orange { background-color: #DD9166; box-shadow: 0 5px 50px #DD9166; }
-.color-red { background-color: #E27D7D; box-shadow: 0 5px 50px #E27D7D; }
-.color-burgundy { background-color: #964E4E; box-shadow: 0 5px 50px #964E4E; }
-.color-yellow { background-color: #F7C977; box-shadow: 0 5px 50px #F7C977; }
-.color-pink { background-color: #F9AAAB; box-shadow: 0 5px 50px #F9AAAB; }
-.color-turquoise { background-color: #87CCBE; box-shadow: 0 5px 50px #87CCBE; }
-.color-green { background-color: #BECC96; box-shadow: 0 5px 50px #BECC96; }
-.color-purple { background-color: #BC9FE2; box-shadow: 0 5px 50px #BC9FE2; }
-.color-blue { background-color: #90A2DD; box-shadow: 0 5px 50px #90A2DD; }
-.color-gray { background-color: #CBCBC9; box-shadow: 0 5px 50px #CBCBC9; }
-.color-brown { background-color: #8B7965; box-shadow: 0 5px 50px #8B7965; }
-.color-black { background-color: #606060; box-shadow: 0 5px 50px #606060; }
+.color-orange {
+    background-color: #DD9166;
+    box-shadow: 0 5px 50px #DD9166;
+}
+
+.color-red {
+    background-color: #E27D7D;
+    box-shadow: 0 5px 50px #E27D7D;
+}
+
+.color-burgundy {
+    background-color: #964E4E;
+    box-shadow: 0 5px 50px #964E4E;
+}
+
+.color-yellow {
+    background-color: #F7C977;
+    box-shadow: 0 5px 50px #F7C977;
+}
+
+.color-pink {
+    background-color: #F9AAAB;
+    box-shadow: 0 5px 50px #F9AAAB;
+}
+
+.color-turquoise {
+    background-color: #87CCBE;
+    box-shadow: 0 5px 50px #87CCBE;
+}
+
+.color-green {
+    background-color: #BECC96;
+    box-shadow: 0 5px 50px #BECC96;
+}
+
+.color-purple {
+    background-color: #BC9FE2;
+    box-shadow: 0 5px 50px #BC9FE2;
+}
+
+.color-blue {
+    background-color: #90A2DD;
+    box-shadow: 0 5px 50px #90A2DD;
+}
+
+.color-gray {
+    background-color: #CBCBC9;
+    box-shadow: 0 5px 50px #CBCBC9;
+}
+
+.color-brown {
+    background-color: #8B7965;
+    box-shadow: 0 5px 50px #8B7965;
+}
+
+.color-black {
+    background-color: #606060;
+    box-shadow: 0 5px 50px #606060;
+}
 
 
 .mwl {
@@ -604,14 +643,14 @@
 }
 
 
- 
+
 .border1 {
     position: absolute;
     width: 591.94px;
     height: 621.11px;
     left: 67px;
 }
- 
+
 .imgKS {
     position: absolute;
     width: 536.94px;
@@ -624,17 +663,17 @@
 
 .aboutKS {
     position: absolute;
-    width: 721px; 
+    width: 721px;
     height: 436.36px;
     border-radius: 100px 0px 0px 0px;
     background-color: #F0EFEB;
     right: 0;
     top: 88.5px;
     box-shadow: 0 5px 50px #F0EFEB;
-} 
+}
 
 .postsKSA {
-    position: absolute ;
+    position: absolute;
     width: 300px;
     height: 20px;
     font-family: 'Sitka';
@@ -645,7 +684,7 @@
 }
 
 .nameKSA {
-    position: absolute ;
+    position: absolute;
     width: 300px;
     height: 50px;
     font-family: 'Constanta';
@@ -656,7 +695,7 @@
 }
 
 .textKSA {
-    position: absolute ;
+    position: absolute;
     width: 500px;
     height: 160px;
     font-family: 'Arial';
@@ -687,7 +726,7 @@
     height: 621.11px;
     right: 67px;
 }
- 
+
 .imgA {
     position: absolute;
     width: 536.94px;
@@ -700,14 +739,14 @@
 
 .aboutA {
     position: absolute;
-    width: 721px; 
+    width: 721px;
     height: 436.36px;
     border-radius: 0px 100px 0px 0px;
     background-color: #F0EFEB;
     left: 0;
     top: 88.5px;
     box-shadow: 0 5px 50px #F0EFEB;
-} 
+}
 
 
 
@@ -728,3 +767,26 @@
 html {
     scroll-behavior: smooth;
 }
+
+
+/*Нижняя часть сайта*/
+.footer {
+    background-color: #5B524D;
+    width: 1300px;
+    height: 220px;
+    text-align: center;
+    font-family: 'Stika';
+    font-size: 26px;
+    color: #C6AE91;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+

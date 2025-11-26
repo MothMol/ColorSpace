@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Space</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap только для мобильных -->
+    <style>
+        @media (max-width: 768px) {
+            /* Подключаем Bootstrap CSS только для мобильных */
+            @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+        }
+    </style>
 </head>
 
 <body class="body">
+
     <div class="main">
         <!-- Меню -->
         <br><br><br>
@@ -33,7 +42,7 @@
         </header>
 
         <!-- О нас -->
-        <div class="aboutUs" >
+        <div class="aboutUs">
             <div class="aboutPhoto"></div>
             <div class="aboutText"></div>
             <span class="welcome-text welcome-text-1">Здравствуйте,</span>
@@ -72,7 +81,7 @@
 
         <!-- Тест -->
         <div class="test" id="test">
-            <button class="testButton">
+               <a href="test/index.html" class="testButton">
                 <span class="startTest-text startTest-large">START</span>
                 <span class="startTest-text startTest-small">the test</span>
                 <div class="firstFlower"></div>
@@ -80,7 +89,7 @@
                 <div class="thirdFlower"></div>
                 <div class="fourthFlower"></div>
                 <div class="fifthFlower"></div>
-            </button>
+               </a>
 
             <div class="result result-1">
                 <div class="res res-1-3">
@@ -116,62 +125,62 @@
             <img src="images/украшения/палкаmwl.jpg" alt="Декоративный элемент" class="palkamwl">
         </div>
 
-<!--Команда-->
-<div class="team">
-    <!--Катя-->
-    <div class="ksa">
-        <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
-        <div class="imgKS"></div>
-        <div class="aboutKS">
-            <span class="postsKSA">Программист, директор</span>
-            <span class="nameKSA">Екатерина</span>
-            <span class="textKSA">С другой стороны постоянное информационно-про-
-                пагандистское обеспечение нашей деятельности
-                представляет собой интересный эксперимент про-
-                верки систем массовоС другой стороны постоянное
-                информационно-пропагандистское обеспечение
-                нашей деятельности представляет собой интерес-
-                ный экспери</span>
-            <button class="buttonKS">woah!</button>
-        </div>
-    </div>
+        <!--Команда-->
+        <div class="team">
+            <!--Катя-->
+            <div class="ksa">
+                <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
+                <div class="imgKS"></div>
+                <div class="aboutKS">
+                    <span class="postsKSA">Программист, директор</span>
+                    <span class="nameKSA">Екатерина</span>
+                    <span class="textKSA">С другой стороны постоянное информационно-про-
+                        пагандистское обеспечение нашей деятельности
+                        представляет собой интересный эксперимент про-
+                        верки систем массовоС другой стороны постоянное
+                        информационно-пропагандистское обеспечение
+                        нашей деятельности представляет собой интерес-
+                        ный экспери</span>
+                    <button class="buttonKS">woah!</button>
+                </div>
+            </div>
 
-    <!--Альбина-->
-    <div class="ksa">
-        <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border2">
-        <div class="imgA"></div>
-        <div class="aboutA">
-            <span class="postsKSA">Контент-менеджер, тестировщик</span>
-            <span class="nameKSA">Альбина</span>
-            <span class="textKSA">С другой стороны постоянное информационно-про-
-                пагандистское обеспечение нашей деятельности
-                представляет собой интересный эксперимент про-
-                верки систем массовоС другой стороны постоянное
-                информационно-пропагандистское обеспечение
-                нашей деятельности представляет собой интерес-
-                ный экспери</span>
-            <button class="buttonA">woah!</button>
-        </div>
-    </div>
+            <!--Альбина-->
+            <div class="ksa">
+                <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border2">
+                <div class="imgA"></div>
+                <div class="aboutA">
+                    <span class="postsKSA">Контент-менеджер, тестировщик</span>
+                    <span class="nameKSA">Альбина</span>
+                    <span class="textKSA">С другой стороны постоянное информационно-про-
+                        пагандистское обеспечение нашей деятельности
+                        представляет собой интересный эксперимент про-
+                        верки систем массовоС другой стороны постоянное
+                        информационно-пропагандистское обеспечение
+                        нашей деятельности представляет собой интерес-
+                        ный экспери</span>
+                    <button class="buttonA">woah!</button>
+                </div>
+            </div>
 
-    <!--Соня-->
-    <div class="ksa">
-        <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
-        <div class="imgKS"></div>
-        <div class="aboutKS">
-            <span class="postsKSA">Дизайнер, художник</span>
-            <span class="nameKSA">Софья</span>
-            <span class="textKSA">С другой стороны постоянное информационно-про-
-                пагандистское обеспечение нашей деятельности
-                представляет собой интересный эксперимент про-
-                верки систем массовоС другой стороны постоянное
-                информационно-пропагандистское обеспечение
-                нашей деятельности представляет собой интерес-
-                ный экспери</span>
-            <button class="buttonKS">woah!</button>
+            <!--Соня-->
+            <div class="ksa">
+                <img src="images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
+                <div class="imgKS"></div>
+                <div class="aboutKS">
+                    <span class="postsKSA">Дизайнер, художник</span>
+                    <span class="nameKSA">Софья</span>
+                    <span class="textKSA">С другой стороны постоянное информационно-про-
+                        пагандистское обеспечение нашей деятельности
+                        представляет собой интересный эксперимент про-
+                        верки систем массовоС другой стороны постоянное
+                        информационно-пропагандистское обеспечение
+                        нашей деятельности представляет собой интерес-
+                        ный экспери</span>
+                    <button class="buttonKS">woah!</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <!-- Подвал -->
         <footer class="footer" id="contact">
@@ -180,8 +189,11 @@
             <span class="gmail">POCHTA@gmail.com</span>
         </footer>
     </div>
-
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+
+
+
 </body>
 
 </html>
