@@ -225,62 +225,62 @@ const questions = [
 const colors = [
     {
         name: "Красный",
-        hex: "#FF5252",
+        hex: "#E27D7D",
         description: "Вы - человек действия, энергии и страсти. Ваша натура сильная, решительная и напористая. Вы предпочитаете прямой подход и не боитесь брать на себя ответственность."
     },
     {
         name: "Оранжевый",
-        hex: "#FF9800",
+        hex: "#DD9166",
         description: "Вы - человек приключений, творчества и энтузиазма. Ваша натура энергичная, общительная и жизнерадостная. Вы любите новые впечатления и вдохновляете окружающих."
     },
     {
         name: "Жёлтый",
-        hex: "#FFEB3B",
+        hex: "#F7C977",
         description: "Вы - человек оптимизма, радости и интеллекта. Ваша натура светлая, позитивная и вдохновляющая. Вы видите возможности там, где другие видят проблемы."
     },
     {
         name: "Чёрный",
-        hex: "#212121",
+        hex: "#606060",
         description: "Вы - человек тайны, элегантности и силы. Ваша натура глубокая, загадочная и мощная. Вы предпочитаете глубину поверхностности и цените настоящую суть вещей."
     },
     {
         name: "Зелёный",
-        hex: "#4CAF50",
+        hex: "#BECC96",
         description: "Вы - человек гармонии, роста и заботы. Ваша натура уравновешенная, сострадательная и стабильная. Вы стремитесь к балансу во всём и помогаете другим найти свой путь."
     },
     {
         name: "Бирюзовый",
-        hex: "#00BCD4",
+        hex: "#87CCBE",
         description: "Вы - человек спокойствия, ясности и коммуникации. Ваша натура гармоничная, интуитивная и проницательная. Вы умеете слушать и находить общий язык с разными людьми."
     },
     {
         name: "Бордовый",
-        hex: "#800000",
+        hex: "#964E4E",
         description: "Вы - человек страсти, элегантности и глубины. Ваша натура утонченная, страстная и загадочная. Вы сочетаете в себе силу и изысканность, создавая вокруг себя атмосферу роскоши и таинственности."
     },
     {
         name: "Синий",
-        hex: "#2196F3",
+        hex: "#90A2DD",
         description: "Вы - человек глубины, стабильности и мудрости. Ваша натура серьёзная, надёжная и интеллектуальная. Вы предпочитаете тщательно обдумывать решения и действовать обоснованно."
     },
     {
         name: "Фиолетовый",
-        hex: "#9C27B0",
+        hex: "#BC9FE2",
         description: "Вы - человек творчества, духовности и интуиции. Ваша натура чувствительная, артистичная и мечтательная. Вы видите мир через призму воображения и вдохновения."
     },
     {
         name: "Розовый",
-        hex: "#E91E63",
+        hex: "#F9AAAB",
         description: "Вы - человек любви, нежности и сострадания. Ваша натура чувствительная, заботливая и романтичная. Вы цените эмоциональную близость и создаёте уют вокруг себя."
     },
     {
         name: "Коричневый",
-        hex: "#795548",
+        hex: "#8B7965",
         description: "Вы - человек надёжности, стабильности и практичности. Ваша натура устойчивая, ответственная и земная. Вы цените традиции и создаёте прочный фундамент для себя и близких."
     },
     {
         name: "Серый",
-        hex: "#9E9E9E",
+        hex: "#CBCBC9",
         description: "Вы - человек баланса, нейтральности и компромисса. Ваша натура спокойная, практичная и дипломатичная. Вы умеете находить золотую середину и объективно оценивать ситуацию."
     }
 ];
@@ -416,3 +416,46 @@ const colorMusic = [
         description: " "
     }
 ];
+
+  document.addEventListener('DOMContentLoaded', function() {
+            const allResultsLink = document.getElementById('all-results-link');
+            const resultsDropdown = document.getElementById('results-dropdown');
+            const resultsOptions = document.querySelectorAll('.results-option');
+            
+            // Открытие меню при наведении
+            allResultsLink.addEventListener('mouseenter', function() {
+                resultsDropdown.classList.add('show');
+            });
+            
+            // Закрытие меню при уходе курсора
+            allResultsLink.addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    if (!resultsDropdown.matches(':hover')) {
+                        resultsDropdown.classList.remove('show');
+                    }
+                }, 100);
+            });
+            
+            // Управление меню при наведении на dropdown
+            resultsDropdown.addEventListener('mouseenter', function() {
+                resultsDropdown.classList.add('show');
+            });
+            
+            resultsDropdown.addEventListener('mouseleave', function() {
+                resultsDropdown.classList.remove('show');
+            });
+            
+            // Обработка выбора цвета
+            resultsOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const colorIndex = parseInt(this.getAttribute('data-color'));
+                    showResults(colorIndex);
+                    resultsDropdown.classList.remove('show');
+                });
+            });
+            
+            // Предотвращение перехода по ссылке
+            allResultsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });

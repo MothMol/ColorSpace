@@ -339,4 +339,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ждем немного перед инициализацией цветного меню, чтобы кнопки успели сгенерироваться
     setTimeout(initColorChanger, 100);
+    
 });
