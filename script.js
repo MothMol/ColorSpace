@@ -1,4 +1,7 @@
 window.scrollTo(0, 0);
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.zoom = "0.90";
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     // Генерация цветных кнопок

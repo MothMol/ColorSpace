@@ -205,9 +205,9 @@
 }
 
 .circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 11px;
+    width: 20px;
+    height: 7px;
+    border-radius: 100px;
     background-color: #FFFFFF;
     border: 2px solid transparent;
     transition: border-color 0.3s ease;
@@ -226,7 +226,7 @@
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     cursor: pointer;
 }
 
@@ -313,7 +313,7 @@
     border: none;
     display: flex;
     flex-direction: column;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
      text-decoration: none !important;
 }
 
@@ -324,50 +324,14 @@
     text-align: center;
     line-height: 55px;
 }
-
-.firstFlower {
+.flower {
     position: absolute;
-    width: 138px;
-    height: 319.76px;
-    background-image: url(images/цветыТест/желтЛев.jpg);
-    margin-left: 97.49px;
-    margin-top: 227.7px;
-}
-
-.secondFlower {
-    position: absolute;
-    width: 129px;
-    height: 299.3px;
-    background-image: url(images/цветыТест/розЛев.jpg);
-    margin-left: 303.61px;
-    margin-top: 248.19px;
-}
-
-.thirdFlower {
-    position: absolute;
-    width: 117.18px;
-    height: 331.17px;
-    background-image: url(images/цветыТест/желтПрав.jpg);
-    margin-left: 828px;
-    margin-top: 221.62px;
-}
-
-.fourthFlower {
-    position: absolute;
-    width: 93.32px;
-    height: 265px;
-    background-image: url(images/цветыТест/оранжПрав.jpg);
-    right: 212.87px;
-    top: 287.56px;
-}
-
-.fifthFlower {
-    position: absolute;
-    width: 106.19px;
-    height: 381.52px;
-    background-image: url(images/цветыТест/розПрав.jpg);
-    right: 111.96px;
-    top: 171.2px;
+    width: 1075px;
+    height: 382px;
+    background-image: url(images/цветыТест/Цветы.png);
+    margin-left: 97.75px;
+    margin-right: auto;
+    margin-top: 175px;
 }
 
 .result1-3 {

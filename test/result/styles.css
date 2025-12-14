@@ -1,0 +1,247 @@
+/* Подключение шрифтов */
+@font-face {
+    font-family: 'Constanta';
+    src: url('fonts/constanb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mistral';
+    src: url('fonts/MISTRAL.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro';
+    src: url('fonts/MyriadPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Stika';
+    src: url('fonts/SitkaVF.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SitkaIt';
+    src: url('fonts/SitkaVF-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Arial Custom';
+    src: url('fonts/arial.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Constan';
+    src: url('fonts/constan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Классы*/
+.body {
+    background: linear-gradient(#F9F1ED, #DCD2C7);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    align-items: center;
+}
+
+.main {
+    width: 1300px;
+    height: 5772.62px;
+    background-color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    box-shadow: 0 10px 55px #7e746d;
+    position: relative;
+}
+
+/*Верхняя часть сайта*/
+.header {
+    width: 100%;
+    height: 160px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+/*Левая часть верхней части*/
+.menuLeft {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding-left: 110px;
+    padding-top: 55px;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+}
+
+.color-text {
+    font-family: 'Mistral';
+    font-size: 52px;
+    color: #42383C;
+    margin-bottom: 0px;
+}
+
+.space-text {
+    font-family: 'Stika';
+    font-size: 78px;
+    color: #42383C;
+    letter-spacing: 0px;
+    margin-top: -10px;
+}
+
+/*Центр верхней части*/
+.navigation {
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 60px;
+    margin-top: 80px;
+    white-space: nowrap;
+}
+
+.link-text {
+    font-family: 'SitkaIt';
+    font-size: 26px;
+    color: #42383C;
+    text-decoration: none !important;
+}
+
+/*Правая часть верхней части*/
+.palka {
+    margin-top: 10%;
+    margin-left: 80px;
+    width: 250px;
+}
+
+/*Красный цвет результат*/
+.left {
+    position: absolute;
+    width: 523px;
+    height: 670px;
+    margin-left: 0;
+}
+
+/*Левая сторона*/
+.redRec {
+    margin-left: 74px;
+    margin-top: 85px;
+    width: 450px;
+    height: 288px;
+    background-image: url(images/ЛевЧасть/Прямоугольник.png);
+    position: relative;
+}
+
+.redFlow {
+    margin-left: 29px;
+    margin-top: -20px;
+    width: 492.85px;
+    height: 397.02px;
+    background-image: url(images/ЛевЧасть/ЦветыЛевКрасн.png);
+    position: relative;
+}
+
+/*Правая сторона*/
+.right {
+    position: absolute;
+    width: 752px;
+    height: 670px;
+}
+
+.redRec2 {
+    margin-left: 523px;
+    margin-top: 85px;
+    width: 708px;
+    height: 429.31px;
+    background-image: url(images/ПравЧасть/Прямоугольник.png);
+    position: relative;
+}
+
+.redFlowRig {
+    margin-left: 1030px;
+    margin-top: -120px;
+    width: 208.34px;
+    height: 279.98px;
+    background-image: url(images/ПравЧасть/ЦветыПравКрасн.png);
+    position: relative;
+}
+
+.leftText {
+    position: absolute;
+    margin-left: 70px;
+}
+.smallText {
+    font-family: 'Stika';
+    font-size: 63px;
+    color: #5B524D;
+}
+.top {
+    margin-top: 80px;
+}
+
+.bigText {
+    font-family: 'Myriad Pro';
+    font-size: 111.5px;
+    color: #5B524D;
+    letter-spacing: 0.5px;
+    position: absolute;
+    z-index: 10;
+    white-space: nowrap; 
+    margin-top: 140px;
+}
+
+.buttonText {
+    font-family: 'Stika';
+    font-size: 22px;
+    color: #5B524D;
+}
+
+.descrText {
+    font-family:'Myriad Pro';
+    font-size: 18px;
+    color: #5B524D;
+}
+
+
+/*Нижняя часть сайта*/
+.footer {
+    background-color: #5B524D;
+    width: 1300px;
+    height: 220px;
+    text-align: center;
+    font-family: 'Stika';
+    font-size: 26px;
+    color: #C6AE91;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

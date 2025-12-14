@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color space's test</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body class="body">
@@ -85,25 +86,60 @@
         </header>
 
         <!-- Страницы с вопросами -->
-        <div class="question-page"> 
-            
-            <div class="questions">
-                <!-- Вопросы будут добавлены динамически --> 
-                 
-                
-                <!-- Кнопки навигации -->
-            <div class="btn-container">
-                <button id="back-btn" class="btn btn-back" style="display: none;">Назад</button>
-                <button id="next-btn" class="btn-next">Далее</button>
-            </div>  
-             <!-- Результат -->
-        <div id="result" class="result">
-            <div id="color-box" class="color-box"></div>
-            <h2 id="result-title" class="result-title"></h2>
-            <p id="result-description" class="result-description"></p>
-            <button id="restart-btn" class="btn restart-btn">Пройти тест заново</button>
-        </div>
+        <div class="question-page">
 
+            <div class="questions">
+                <!-- Вопросы будут добавлены динамически -->
+
+                <div id="questions-container"></div>
+                <!-- Кнопки навигации -->
+                <div class="btn-container">
+                    <button id="back-btn" class="btn btn-back" style="display: none;">Назад</button>
+                    <button id="next-btn" class="btn-next">Далее</button>
+                </div>
+                <!-- Результат -->
+                <div id="result" class="result" style="display: none;">
+                    <div class="team">
+                        <!-- Первый блок - Вы как личность -->
+                        <div class="ksa">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
+                                class="border1">
+                            <div class="imgKS" id="result-personality-image"></div>
+                            <div class="aboutKS">
+                                <span class="postsKSA">РЕЗУЛЬТАТ ТЕСТА</span>
+                                <span class="nameKSA" id="result-personality-title">ВЫ КАК ЛИЧНОСТЬ</span>
+                                <span class="textKSA" id="result-personality-description"></span>
+                                <button class="buttonKS" onclick="scrollToNextResult('influence')">↓</button>
+                            </div>
+                        </div>
+
+                        <!-- Второй блок - Влияние цвета -->
+                        <div class="ksa">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
+                                class="border2">
+                            <div class="imgA" id="result-influence-image"></div>
+                            <div class="aboutA">
+                                <span class="postsKSA">ПСИХОЛОГИЯ ЦВЕТА</span>
+                                <span class="nameKSA">ВЛИЯНИЕ ЦВЕТА</span>
+                                <span class="textKSA" id="result-influence-description"></span>
+                                <button class="buttonA" onclick="scrollToNextResult('music')">↓</button>
+                            </div>
+                        </div>
+
+                        <!-- Третий блок - Музыка цвета -->
+                        <div class="ksa">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
+                                class="border1">
+                            <div class="imgKS" id="result-music-image"></div>
+                            <div class="aboutKS">
+                                <span class="postsKSA">МУЗЫКАЛЬНЫЕ АССОЦИАЦИИ</span>
+                                <span class="nameKSA">МУЗЫКА ЦВЕТА</span>
+                                <span class="textKSA" id="result-music-description"></span>
+                                <button class="buttonKS" onclick="restartTest()">ПРОЙТИ ЗАНОВО</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flowers">
@@ -112,13 +148,9 @@
                 <div class="flower3"></div>
 
             </div>
-
-          
-           
-
         </div>
 
-     
+
 
         <!-- Подвал -->
         <footer class="footer" id="contact">
