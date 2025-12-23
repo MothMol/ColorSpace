@@ -96,7 +96,6 @@
     line-height: 35px;
 }
 
-
 .question-counter {
     font-family: 'Stika';
     font-size: 60px;
@@ -105,7 +104,6 @@
     margin-top: -10px;
     word-spacing: 10px;
 }
-
 
 .from-text {
     font-family: 'SitkaIt';
@@ -142,69 +140,12 @@
     text-decoration: none !important;
 }
 
-
 /*Правая часть верхней части*/
 .palka {
     margin-top: 5%;
     margin-left: 45px;
     width: 250px;
 }
-
-
-/* Стили для выпадающего меню all results */
-.results-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    min-width: 180px;
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 1001;
-}
-
-.results-dropdown.show {
-    display: block;
-}
-
-.results-option {
-    padding: 12px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.results-option:hover {
-    background-color: #f5f5f5;
-}
-
-.results-option:last-child {
-    border-bottom: none;
-}
-
-.color-preview {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    flex-shrink: 0;
-}
-
-.results-text {
-    flex: 1;
-}
-
-.all-results-container {
-    position: relative;
-}
-
 
 .question-page {
     width: 100%;
@@ -279,7 +220,7 @@
 }
 
 .option:hover {
-background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FEFEFD);
+    background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FEFEFD);
     transform: translateY(-2px);
     box-shadow: 0 5px 10px #F9F8F2;
 }
@@ -323,7 +264,6 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
     font-size: 20px;
     padding-left: 15px;
 }
-
 
 .btn-next {
     position: absolute;
@@ -375,8 +315,6 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
     background-color: #6e6557;
 }
 
-
-
 .restart-btn {
     background-color: rgba(255, 255, 255, 0.3);
     border: 1px solid white;
@@ -415,7 +353,6 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
     transform: translateX(-50px);
 }
 
-
 .result {
     text-align: center;
     padding: 40px 20px;
@@ -432,7 +369,6 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -481,7 +417,6 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
     background-color: #7a7060;
 }
 
-
 /*Нижняя часть сайта*/
 .footer {
     background-color: #5B524D;
@@ -500,4 +435,10 @@ background: linear-gradient(90deg, #d0c8c369, #ebe8e56e, #f5f4f367, #FFFFFF, #FE
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.gmail {
+    font-family: 'Stika';
+    font-size: 26px;
+    color: #ffffffd6;
 }

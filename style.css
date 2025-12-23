@@ -171,6 +171,7 @@
     position: absolute;
     right: 50px;
     bottom: 34px;
+    box-shadow: 0 25px 85px #b6b4ae88;
 }
 
 .welcome-text {
@@ -226,7 +227,7 @@
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -240,10 +241,30 @@
 /*Выбор цвета*/
 .changeColor {
     width: 100%;
-    height: 1016px;
+    height: 1000px;
     text-align: center;
     position: relative;
     display: flex;
+}
+
+.lineTop {
+    position: absolute;
+    width: 1300px;
+    height: 244px;
+    background-image: url(images/тест/что\ будет/Без/ленты/верх.png);
+    margin-right: 0px;
+    margin-top: 30px;
+    z-index: 9999;
+}
+
+.lineBottom {
+    position: absolute;
+    width: 1300px;
+    height: 245px;
+    background-image: url(images/тест/что\ будет/Без/ленты/низ.png);
+    margin-right: 0px;
+    margin-top: 890px;
+    z-index: 9999;
 }
 
 .quickCC-text {
@@ -297,12 +318,55 @@
     top: 341px;
 }
 
+.clearButton {
+    width: 135px;
+    height: 51px;
+    border-radius: 100px 0px 0px 0px;
+    background-color: #FFFFFF;
+    border: none;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    right: 310px;
+    bottom: 34px;
+}
+
+.toResultButton {
+    position: absolute;
+    width: 380px;
+    height: 46px;
+    border-radius: 30px 0px 0px 30px;
+    right: 0;
+    top: 790px;
+    box-shadow: 0px 10px 100px #ada39c6c;
+    border: none;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none !important;
+}
+
+.trt {
+    font-family: 'Inter';
+    font-size: 21px;
+    color: #5B524D;
+}
+
+
 .test {
     width: 100%;
-    height: 1016px;
-    background-color: #C6AE91;
+    height: 970px;
+    background-color: #ffffff;
     align-items: center;
     position: relative;
+    scroll-margin-top: -45px;
+
 }
 
 .testButton {
@@ -314,7 +378,8 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-     text-decoration: none !important;
+    text-decoration: none !important;
+    clip-path: inset(50px 0 0 0);
 }
 
 .startTest-text {
@@ -324,20 +389,21 @@
     text-align: center;
     line-height: 55px;
 }
+
 .flower {
     position: absolute;
     width: 1075px;
     height: 382px;
-    background-image: url(images/цветыТест/Цветы.png);
+    background-image: url(images/тест/что\будет/Без/цветы.png);
     margin-left: 97.75px;
     margin-right: auto;
-    margin-top: 175px;
+    margin-top: 135px;
 }
 
-.result1-3 {
+.result1 {
     width: 433px;
     height: 445px;
-    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
+    background-image: url(images/тест/что\ будет/Без/личность.jpg);
     position: absolute;
     bottom: 0;
 }
@@ -345,27 +411,29 @@
 .result2 {
     width: 434px;
     height: 445px;
-    background-image: url(images/тест/что\ будет/проверка.jpg);
+    background-image: url(images/тест/что\ будет/Без/влияние.jpg);
     position: absolute;
     bottom: 0;
     left: 433px;
 }
 
+.result3 {
+    width: 433px;
+    height: 445px;
+    background-image: url(images/тест/что\ будет/Без/музыка.jpg);
+    position: absolute;
+    bottom: 0;
+    left: 866px;
+}
+
 .res1-3 {
     width: 433px;
     height: 223px;
-    background-color: #6d625b55;
+    background-color: #ffffffcf;
     position: absolute;
     bottom: 0;
 }
 
-.res2 {
-    width: 434px;
-    height: 223px;
-    background-color: #ff000055;
-    position: absolute;
-    bottom: 0;
-}
 
 .description {
     width: 354px;
@@ -374,7 +442,6 @@
     text-align: left;
 }
 
-/* Новые стили для позиционирования */
 .welcome-text-1 {
     top: 74px;
     right: 77px;
@@ -404,7 +471,7 @@
 }
 
 .button-2 {
-    right: 190px;
+    right: 120px;
     bottom: 34px;
 }
 
@@ -443,49 +510,6 @@
     margin-top: 761px;
 }
 
-/* Стили для тестовых блоков */
-.result-1 {
-    width: 433px;
-    height: 445px;
-    background-image: url(images/тест/что\ будет/собак.jpg);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.result-2 {
-    width: 434px;
-    height: 445px;
-    background-image: url(images/тест/что\ будет/фонПроверка.jpg);
-    position: absolute;
-    bottom: 0;
-    left: 433px;
-}
-
-.result-3 {
-    width: 433px;
-    height: 445px;
-    background-image: url(images/тест/что\ будет/собак.jpg);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.res-1-3 {
-    width: 433px;
-    height: 223px;
-    background-color: #6d625b55;
-    position: absolute;
-    bottom: 0;
-}
-
-.res-2 {
-    width: 434px;
-    height: 223px;
-    background-color: #6d625b55;
-    position: absolute;
-    bottom: 0;
-}
 
 .desc-title {
     font-size: 34px;
@@ -584,6 +608,7 @@
     left: 543.5px;
 }
 
+
 .palkamwl {
     position: absolute;
     width: 247px;
@@ -642,6 +667,15 @@
     left: 94px;
 }
 
+.bull {
+    position: absolute;
+    width:60px;
+    height: 60px;
+    background-image: url(images/украшения/бык.png);
+    right: 20px;
+    bottom: 20px;
+}
+
 .nameKSA {
     position: absolute;
     width: 300px;
@@ -655,27 +689,13 @@
 
 .textKSA {
     position: absolute;
-    width: 500px;
+    width: 600px;
     height: 160px;
     font-family: 'Arial';
     font-size: 20px;
     color: #42383C;
-    top: 147px;
-    left: 89px;
-}
-
-.buttonKS {
-    position: absolute;
-    font-family: 'Sitka';
-    font-size: 20px;
-    width: 134px;
-    height: 57px;
-    cursor: pointer;
-    border: none;
-    background-color: #FFFFFF;
-    right: 88px;
-    bottom: 46px;
-    border-radius: 50px 0px 0px 0px;
+    top: 137px;
+    left: 79px;
 }
 
 /*Альбина*/
@@ -743,4 +763,43 @@ html {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.gmail {
+    font-family: 'Stika';
+    font-size: 26px;
+    color: #ffffffd6;
+}
+
+/* Плавные переходы для всех элементов темы */
+.body,
+.color-text,
+.space-text,
+.link-text,
+.button-text,
+.welcome-text,
+.welcome-text2,
+.desc-title,
+.desc-text,
+.nameKSA,
+.textKSA,
+.postsKSA,
+.mwl-text,
+.wot-text,
+.gmail,
+.startTest-text,
+.quickCC-large,
+.quickCC-small,
+.Button,
+.buttonKS,
+.buttonA,
+.footer,
+.aboutText,
+.aboutKS,
+.aboutA,
+.confirmColor {
+    transition: color 0.5s ease-in-out,
+        background-color 0.5s ease-in-out,
+        background 0.5s ease-in-out,
+        background-image 0.5s ease-in-out;
 }

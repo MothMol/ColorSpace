@@ -21,29 +21,111 @@
             </div>
 
             <nav class="navigation">
-                <a href="#main-page" class="link-text">main page</a>
-                <a href="#test" class="link-text">test</a>
-                <a href="#about-us" class="link-text">about us</a>
-                <a href="#contact" class="link-text">contact</a>
+                <a href="../../index.html" class="link-text">main page</a>
+                <a href="#" class="link-text" id="all-results-link">results</a>
+                <div class="results-dropdown" id="results-dropdown">
+                    <div class="results-option" data-color="0">
+                        <div class="color-preview" style="background-color: #E27D7D"></div>
+                        <span class="results-text">Красный</span>
+                    </div>
+                    <div class="results-option" data-color="1">
+                        <div class="color-preview" style="background-color: #DD9166"></div>
+                        <span class="results-text">Оранжевый</span>
+                    </div>
+                    <div class="results-option" data-color="2">
+                        <div class="color-preview" style="background-color: #F7C977"></div>
+                        <span class="results-text">Жёлтый</span>
+                    </div>
+                    <div class="results-option" data-color="3">
+                        <div class="color-preview" style="background-color: #606060"></div>
+                        <span class="results-text">Чёрный</span>
+                    </div>
+                    <div class="results-option" data-color="4">
+                        <div class="color-preview" style="background-color: #BECC96"></div>
+                        <span class="results-text">Зелёный</span>
+                    </div>
+                    <div class="results-option" data-color="5">
+                        <div class="color-preview" style="background-color: #87CCBE"></div>
+                        <span class="results-text">Бирюзовый</span>
+                    </div>
+                    <div class="results-option" data-color="6">
+                        <div class="color-preview" style="background-color: #964E4E"></div>
+                        <span class="results-text">Бордовый</span>
+                    </div>
+                    <div class="results-option" data-color="7">
+                        <div class="color-preview" style="background-color: #90A2DD"></div>
+                        <span class="results-text">Синий</span>
+                    </div>
+                    <div class="results-option" data-color="8">
+                        <div class="color-preview" style="background-color: #BC9FE2"></div>
+                        <span class="results-text">Фиолетовый</span>
+                    </div>
+                    <div class="results-option" data-color="9">
+                        <div class="color-preview" style="background-color: #F9AAAB"></div>
+                        <span class="results-text">Розовый</span>
+                    </div>
+                    <div class="results-option" data-color="10">
+                        <div class="color-preview" style="background-color: #8B7965"></div>
+                        <span class="results-text">Коричневый</span>
+                    </div>
+                    <div class="results-option" data-color="11">
+                        <div class="color-preview" style="background-color: #CBCBC9"></div>
+                        <span class="results-text">Серый</span>
+                    </div>
+                </div>
+                <a href="../index.html" class="link-text">test</a>
             </nav>
 
             <div class="palka">
                 <img src="images/алка2.jpg" alt="Декоративный элемент">
             </div>
         </header>
-
-        <!--Очевидно...-->
-        <div class="left">
-            <div class="redRec"><span class="smallText leftText top">Очевидно,</span>
-                <span class="bigText leftText">КРАСНЫЙ</span>
+        <div class="prewiew">
+            <!--Очевидно...-->
+            <div class="left">
+                <div class="redRec"><span class="smallText leftText top">Очевидно,</span>
+                    <span class="bigText leftText">КРАСНЫЙ</span>
+                </div>
+                <div class="redFlow"></div>
             </div>
-            <div class="redFlow"></div>
+
+            <!--Сам результат(право)-->
+            <div class="right">
+                <div class="redRec2">
+                    <div class="hyphen"></div>
+                    <span class="smallText textText">это Ваш цвет!</span>
+                    <span class="resText">Будет дано описание человека как личности в зависимости от его любимого цвета.</span>
+                </div>
+                <div class="redFlowRig"></div>
+            </div>
+
+            <button id="next-category-btn" class="buttonText button">далее</button>
+            <button class="otherButtonText otherButton">применить тему</button>
+
         </div>
 
-        <!--Сам результат(право)-->
-        <div class="right">
-            <div class="redRec2"></div>
-            <div class="redFlowRig"></div>
+        <!--Результаты-->
+        <div class="blockResults">
+            <span class="results">Результаты</span>
+            <div class="title"></div>
+            <div class="position">
+                <div class="leftBlock">
+                    <span class="description topDescr leftDescr">Вы - человек действия, энергии и страсти.<br><br>
+                        Ваша натура сильная, решительная и напористая.<br>
+                        Вы предпочитаете прямой подход и не боитесь брать на себя ответственность.
+                    </span>
+                </div>
+                <div class="middleBlock">
+                    <span class="description topDescr middleDescr">Рок-н-ролл или Хард-рок идеально ассоциируется с красным цветом по мнению многих людей. <br><br>
+                        Данный жанр, как и красный цвет, страстный, агрессивный, энергичный и властный. <br>
+                        Идеально передает драйв и мощь рок-музыки.</span>
+                </div>
+                <div class="rightBlock">
+                    <span class="description topDescr rightDescr">Красный цвет будит страсть и волю к власти, заставляя действовать решительно.<br><br> Он учащает пульс и повышает артериальное давление, побуждая к немедленным действиям. <br><br> 
+                        Применяй его, когда нужен прорыв, но избегай в состоянии гнева или стресса. <br>  
+                        Его следует использовать для привлечения внимания и в зонах активности (спортзал), но желательно избегать там, где нужен покой: например, в спальнях и зонах отдыха.</span>
+                </div>
+            </div>
         </div>
 
 
@@ -51,8 +133,8 @@
 
         <!-- Подвал -->
         <footer class="footer" id="contact">
-            <span class="contact-text">Contact</span>
-            <span class="mainFooter-text">Можете присылать свои хвалебные письма на нашу почту</span><br>
+            <span>Contact</span>
+            <span>Можете присылать свои хвалебные письма на нашу почту</span><br>
             <span class="gmail">POCHTA@gmail.com</span>
         </footer>
     </div>

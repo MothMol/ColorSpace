@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color space's test</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body class="body">
     <div class="main">
-
         <!-- Меню -->
         <br><br><br>
         <header class="header" id="main-page">
@@ -25,59 +23,7 @@
             <!-- Навигация -->
             <nav class="navigation">
                 <a href="../index.html" class="link-text">main page</a>
-                <div class="all-results-container">
-                    <a href="#" class="link-text" id="all-results-link">results</a>
-                    <div class="results-dropdown" id="results-dropdown">
-                        <div class="results-option" data-color="0">
-                            <div class="color-preview" style="background-color: #E27D7D"></div>
-                            <span class="results-text">Красный</span>
-                        </div>
-                        <div class="results-option" data-color="1">
-                            <div class="color-preview" style="background-color: #DD9166"></div>
-                            <span class="results-text">Оранжевый</span>
-                        </div>
-                        <div class="results-option" data-color="2">
-                            <div class="color-preview" style="background-color: #F7C977"></div>
-                            <span class="results-text">Жёлтый</span>
-                        </div>
-                        <div class="results-option" data-color="3">
-                            <div class="color-preview" style="background-color: #606060"></div>
-                            <span class="results-text">Чёрный</span>
-                        </div>
-                        <div class="results-option" data-color="4">
-                            <div class="color-preview" style="background-color: #BECC96"></div>
-                            <span class="results-text">Зелёный</span>
-                        </div>
-                        <div class="results-option" data-color="5">
-                            <div class="color-preview" style="background-color: #87CCBE"></div>
-                            <span class="results-text">Бирюзовый</span>
-                        </div>
-                        <div class="results-option" data-color="6">
-                            <div class="color-preview" style="background-color: #964E4E"></div>
-                            <span class="results-text">Бордовый</span>
-                        </div>
-                        <div class="results-option" data-color="7">
-                            <div class="color-preview" style="background-color: #90A2DD"></div>
-                            <span class="results-text">Синий</span>
-                        </div>
-                        <div class="results-option" data-color="8">
-                            <div class="color-preview" style="background-color: #BC9FE2"></div>
-                            <span class="results-text">Фиолетовый</span>
-                        </div>
-                        <div class="results-option" data-color="9">
-                            <div class="color-preview" style="background-color: #F9AAAB"></div>
-                            <span class="results-text">Розовый</span>
-                        </div>
-                        <div class="results-option" data-color="10">
-                            <div class="color-preview" style="background-color: #8B7965"></div>
-                            <span class="results-text">Коричневый</span>
-                        </div>
-                        <div class="results-option" data-color="11">
-                            <div class="color-preview" style="background-color: #CBCBC9"></div>
-                            <span class="results-text">Серый</span>
-                        </div>
-                    </div>
-                </div>
+                <a href="result/index.html" class="link-text">results</a>
             </nav>
 
             <div class="palka">
@@ -87,23 +33,22 @@
 
         <!-- Страницы с вопросами -->
         <div class="question-page">
-
             <div class="questions">
                 <!-- Вопросы будут добавлены динамически -->
-
                 <div id="questions-container"></div>
+                
                 <!-- Кнопки навигации -->
                 <div class="btn-container">
                     <button id="back-btn" class="btn btn-back" style="display: none;">Назад</button>
                     <button id="next-btn" class="btn-next">Далее</button>
                 </div>
+                
                 <!-- Результат -->
                 <div id="result" class="result" style="display: none;">
                     <div class="team">
                         <!-- Первый блок - Вы как личность -->
                         <div class="ksa">
-                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
-                                class="border1">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
                             <div class="imgKS" id="result-personality-image"></div>
                             <div class="aboutKS">
                                 <span class="postsKSA">РЕЗУЛЬТАТ ТЕСТА</span>
@@ -115,8 +60,7 @@
 
                         <!-- Второй блок - Влияние цвета -->
                         <div class="ksa">
-                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
-                                class="border2">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border2">
                             <div class="imgA" id="result-influence-image"></div>
                             <div class="aboutA">
                                 <span class="postsKSA">ПСИХОЛОГИЯ ЦВЕТА</span>
@@ -128,8 +72,7 @@
 
                         <!-- Третий блок - Музыка цвета -->
                         <div class="ksa">
-                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент"
-                                class="border1">
+                            <img src="../images/украшения/рамкаРезультат.svg" alt="Декоративный элемент" class="border1">
                             <div class="imgKS" id="result-music-image"></div>
                             <div class="aboutKS">
                                 <span class="postsKSA">МУЗЫКАЛЬНЫЕ АССОЦИАЦИИ</span>
@@ -146,22 +89,17 @@
                 <div class="flower1"></div>
                 <div class="flower2"></div>
                 <div class="flower3"></div>
-
             </div>
         </div>
 
-
-
         <!-- Подвал -->
         <footer class="footer" id="contact">
-            <span class="contact-text">Contact</span>
-            <span class="mainFooter-text">Можете присылать свои хвалебные письма на нашу почту</span><br>
+            <span>Contact</span>
+            <span>Можете присылать свои хвалебные письма на нашу почту</span><br>
             <span class="gmail">POCHTA@gmail.com</span>
         </footer>
-
     </div>
 
-    </div>
     <script src="script.js"></script>
 </body>
 
