@@ -12,58 +12,29 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Инициализация выпадающего меню...');
     initResultsDropdown();
 
-    // ПРИМЕНЯЕМ ТЕМУ С ГЛАВНОЙ СТРАНИЦЫ В САМОМ НАЧАЛЕ
-    console.log('Применение сохраненной темы...');
-    const themeApplied = applyThemeToResults();
-
-    // Загружаем результат теста
-    console.log('Загрузка результата теста...');
+    // ПРИОРИТЕТ: РЕЗУЛЬТАТ ТЕСТА, А НЕ ТЕМА С ГЛАВНОЙ СТРАНИЦЫ
+    console.log('Проверяем результат теста...');
     const resultColorIndex = localStorage.getItem('testResult');
 
     // Инициализируем кнопку "Далее"
     initNextButton();
 
-    // Если тема применена, показываем соответствующий цвет
-    if (themeApplied) {
-        const savedTheme = localStorage.getItem('selectedTheme');
-        console.log('Тема применена, ищем цвет:', savedTheme);
-        
-        // Находим индекс цвета по имени темы
-        const colorIndex = colors.findIndex(color => color.name.toUpperCase() === savedTheme);
-        if (colorIndex !== -1) {
-            console.log('Найден цвет по теме, индекс:', colorIndex);
-            updateAllBlocks(colorIndex);
-            
-            // Обновляем результат теста в localStorage
-            localStorage.setItem('testResult', colorIndex.toString());
+    // ПЕРВЫЙ ПРИОРИТЕТ: результат теста
+    if (resultColorIndex !== null) {
+        const index = parseInt(resultColorIndex);
+        console.log('Найден результат теста:', index);
+        if (!isNaN(index) && index >= 0 && index < colors.length) {
+            updateAllBlocks(index);
+            console.log('Приоритет: показан результат теста');
         } else {
-            console.log('Цвет не найден по теме, проверяем результат теста');
-            // Если не нашли по теме, используем результат теста
-            if (resultColorIndex !== null) {
-                const index = parseInt(resultColorIndex);
-                if (!isNaN(index) && index >= 0 && index < colors.length) {
-                    updateAllBlocks(index);
-                } else {
-                    showErrorResult();
-                }
-            } else {
-                showErrorResult();
-            }
+            console.log('Результат теста некорректен');
+            // ВТОРОЙ ПРИОРИТЕТ: тема с главной страницы
+            applyThemeFromMainPage();
         }
     } else {
-        // Если тема не применена, используем результат теста
-        console.log('Тема не применена, используем результат теста');
-        if (resultColorIndex !== null) {
-            const index = parseInt(resultColorIndex);
-            console.log('Найден результат:', index);
-            if (!isNaN(index) && index >= 0 && index < colors.length) {
-                updateAllBlocks(index);
-            } else {
-                showErrorResult();
-            }
-        } else {
-            showErrorResult();
-        }
+        console.log('Результат теста не найден');
+        // ВТОРОЙ ПРИОРИТЕТ: тема с главной страницы
+        applyThemeFromMainPage();
     }
 
     // Инициализируем музыку с задержкой
@@ -81,6 +52,38 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('testResult:', localStorage.getItem('testResult'));
     console.log('=== КОНЕЦ ДЕБАГА ===');
 });
+
+// Функция для применения темы с главной страницы (второй приоритет)
+function applyThemeFromMainPage() {
+    console.log('Применение темы с главной страницы (второй приоритет)...');
+    
+    const savedTheme = localStorage.getItem('selectedTheme');
+    const savedThemeData = localStorage.getItem('themeData');
+
+    if (savedTheme && savedThemeData) {
+        try {
+            const theme = JSON.parse(savedThemeData);
+            console.log('Тема с главной страницы загружена:', savedTheme);
+
+            // Находим индекс цвета по имени темы
+            const colorIndex = colors.findIndex(color => color.name.toUpperCase() === savedTheme);
+            if (colorIndex !== -1) {
+                console.log('Найден цвет по теме, индекс:', colorIndex);
+                updateAllBlocks(colorIndex);
+                console.log('Второй приоритет: показана тема с главной страницы');
+            } else {
+                console.log('Цвет не найден по теме');
+                showErrorResult();
+            }
+        } catch (e) {
+            console.error('Ошибка при применении темы с главной:', e);
+            showErrorResult();
+        }
+    } else {
+        console.log('Тема с главной страницы не найдена');
+        showErrorResult();
+    }
+}
 
 // Функция для добавления CSS стилей для аудиоплеера
 function addAudioPlayerStyles() {
@@ -927,21 +930,31 @@ const colorThemes = {
 function updateAllBlocks(colorIndex) {
     console.log('Обновление всех блоков для цвета:', colors[colorIndex].name);
 
+    // Обновляем заголовок
     const titleElement = document.querySelector('.bigText.leftText');
     if (titleElement) {
         titleElement.textContent = colors[colorIndex].name.toUpperCase() + ',';
         titleElement.style.color = colors[colorIndex].hex;
     }
 
+    // Обновляем описание личности
     const leftBlock = document.querySelector('.leftDescr');
     if (leftBlock && colors[colorIndex]) {
         leftBlock.innerHTML = colors[colorIndex].description;
     }
 
+    // Обновляем описание музыки
     const middleBlock = document.querySelector('.middleDescr');
     if (middleBlock && colorMusic[colorIndex]) {
         middleBlock.innerHTML = colorMusic[colorIndex].description;
 
+        // Удаляем старый аудиоплеер
+        const oldPlayer = document.querySelector('.music-player-container');
+        if (oldPlayer) {
+            oldPlayer.remove();
+        }
+
+        // Добавляем новый аудиоплеер
         const audioPlayer = createAudioPlayer(
             colorMusic[colorIndex].audio,
             colorMusic[colorIndex].hex,
@@ -951,13 +964,16 @@ function updateAllBlocks(colorIndex) {
         middleBlock.parentNode.appendChild(audioPlayer);
     }
 
+    // Обновляем описание влияния
     const rightBlock = document.querySelector('.rightDescr');
     if (rightBlock && colorEffect[colorIndex]) {
         rightBlock.innerHTML = colorEffect[colorIndex].description;
     }
 
+    // ВСЕГДА применяем тему из результата теста или выбранного цвета
     applyBackgroundFromColor(colorIndex);
 
+    // Обновляем цветы
     updateFlowersForColor(colorIndex);
 
     console.log('Все блоки обновлены');
@@ -965,14 +981,7 @@ function updateAllBlocks(colorIndex) {
 
 // Функция для применения фона из выбранного цвета
 function applyBackgroundFromColor(colorIndex) {
-    // Проверяем, есть ли сохраненная тема с главной страницы
-    const savedTheme = localStorage.getItem('selectedTheme');
-
-    if (savedTheme) {
-        console.log('Есть сохраненная тема с главной страницы, не изменяем фон');
-        return; // Не меняем фон, если есть тема с главной страницы
-    }
-
+    // Всегда меняем фон на основе выбранного цвета
     if (colorIndex >= 0 && colorIndex < colors.length) {
         const color = colors[colorIndex];
         const themeColor = colorThemes[color.name.toUpperCase()];
@@ -980,11 +989,6 @@ function applyBackgroundFromColor(colorIndex) {
         if (themeColor) {
             document.body.style.background =
                 `linear-gradient(${themeColor.bgGradient[0]}, ${themeColor.bgGradient[1]}, ${themeColor.bgGradient[2]})`;
-
-            localStorage.setItem('previewTheme', JSON.stringify({
-                name: color.name.toUpperCase(),
-                data: themeColor
-            }));
 
             console.log(`Фон изменен на тему: ${color.name}`);
         }
@@ -1000,22 +1004,40 @@ function updateFlowersForColor(colorIndex) {
         if (themeColor && themeColor.flowerImages) {
             console.log(`Обновление цветов для цвета: ${color.name}`);
 
+            // Обновляем левый цветок
             const leftFlower = document.querySelector('.redFlow');
             if (leftFlower && themeColor.flowerImages.left) {
-                leftFlower.style.backgroundImage = `url('${themeColor.flowerImages.left}')`;
-                leftFlower.style.backgroundSize = 'contain';
-                leftFlower.style.backgroundRepeat = 'no-repeat';
-                leftFlower.style.backgroundPosition = 'center';
-                console.log(`Левый цветок обновлен: ${themeColor.flowerImages.left}`);
+                console.log(`Загрузка левого цветка: ${themeColor.flowerImages.left}`);
+                const tempImg = new Image();
+                tempImg.onload = function () {
+                    leftFlower.style.backgroundImage = `url('${themeColor.flowerImages.left}')`;
+                    leftFlower.style.backgroundSize = 'contain';
+                    leftFlower.style.backgroundRepeat = 'no-repeat';
+                    leftFlower.style.backgroundPosition = 'center';
+                    console.log('Левый цветок обновлен');
+                };
+                tempImg.onerror = function () {
+                    console.error(`Не удалось загрузить левый цветок: ${themeColor.flowerImages.left}`);
+                };
+                tempImg.src = themeColor.flowerImages.left;
             }
 
+            // Обновляем правый цветок
             const rightFlower = document.querySelector('.redFlowRig');
             if (rightFlower && themeColor.flowerImages.right) {
-                rightFlower.style.backgroundImage = `url('${themeColor.flowerImages.right}')`;
-                rightFlower.style.backgroundSize = 'contain';
-                rightFlower.style.backgroundRepeat = 'no-repeat';
-                rightFlower.style.backgroundPosition = 'center';
-                console.log(`Правый цветок обновлен: ${themeColor.flowerImages.right}`);
+                console.log(`Загрузка правого цветка: ${themeColor.flowerImages.right}`);
+                const tempImg = new Image();
+                tempImg.onload = function () {
+                    rightFlower.style.backgroundImage = `url('${themeColor.flowerImages.right}')`;
+                    rightFlower.style.backgroundSize = 'contain';
+                    rightFlower.style.backgroundRepeat = 'no-repeat';
+                    rightFlower.style.backgroundPosition = 'center';
+                    console.log('Правый цветок обновлен');
+                };
+                tempImg.onerror = function () {
+                    console.error(`Не удалось загрузить правый цветок: ${themeColor.flowerImages.right}`);
+                };
+                tempImg.src = themeColor.flowerImages.right;
             }
         }
     }
@@ -1169,321 +1191,9 @@ function populateDropdownOptions(dropdown) {
         option.style.textDecoration = 'none';
         option.style.color = '#42383C';
 
-        const colorIndicator = document.createElement('span');
-        colorIndicator.style.cssText = `
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background-color: ${color.hex};
-            border-radius: 50%;
-            margin-right: 10px;
-            vertical-align: middle;
-        `;
-
-        option.appendChild(colorIndicator);
-        option.appendChild(document.createTextNode(color.name));
-
-        option.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            console.log('Выбран цвет:', color.name, 'индекс:', index);
-            updateAllBlocks(index);
-            hideDropdown(dropdown);
-
-            localStorage.setItem('testResult', index);
-
-            window.scrollTo(0, 0);
-        });
-
-        option.addEventListener('mouseenter', function () {
-            this.style.backgroundColor = '#f5f5f5';
-            this.style.color = '#42383C';
-        });
-
-        option.addEventListener('mouseleave', function () {
-            this.style.backgroundColor = '';
-            this.style.color = '#42383C';
-        });
-
-        dropdown.appendChild(option);
-    });
-
-    console.log('Dropdown заполнен опциями цветов:', colors.length);
-}
-
-
-// ===============================
-// ПРИМЕНЕНИЕ ТЕМЫ С ГЛАВНОЙ СТРАНИЦЫ
-// ===============================
-
-// Применяем сохраненную тему на странице результатов
-function applyThemeToResults() {
-    console.log('Применение темы к странице результатов...');
-
-    // Проверяем сохраненную тему
-    const savedTheme = localStorage.getItem('selectedTheme');
-    const savedThemeData = localStorage.getItem('themeData');
-
-    console.log('Проверяем сохраненную тему:', {
-        savedTheme: savedTheme,
-        savedThemeData: savedThemeData ? 'Есть данные' : 'Нет данных'
-    });
-
-    if (savedTheme && savedThemeData) {
-        try {
-            const theme = JSON.parse(savedThemeData);
-            console.log('Тема загружена:', savedTheme, theme);
-
-            // 1. Применяем тему к body (фон)
-            document.body.style.background =
-                `linear-gradient(${theme.bgGradient[0]}, ${theme.bgGradient[1]}, ${theme.bgGradient[2]})`;
-
-            // 2. Применяем цвет текста к элементам
-            const textElements = document.querySelectorAll('.bigText.leftText, .descrText');
-            textElements.forEach(element => {
-                element.style.color = theme.accentColor;
-            });
-
-            // 3. Обновляем цветы
-            updateFlowersForSavedTheme(savedTheme);
-
-            // 4. Обновляем заголовок с названием цвета
-            updateTitleForSavedTheme(savedTheme);
-
-            console.log('Тема успешно применена на странице результатов');
-
-            return true;
-        } catch (e) {
-            console.error('Ошибка при применении темы:', e);
-            return false;
-        }
-    } else {
-        console.log('Данные темы не найдены в localStorage');
-        return false;
-    }
-}
-
-// Функция для обновления цветов для сохраненной темы
-function updateFlowersForSavedTheme(themeName) {
-    console.log(`Обновление цветов для сохраненной темы: ${themeName}`);
-
-    const theme = colorThemes[themeName];
-    if (!theme || !theme.flowerImages) {
-        console.warn(`Тема ${themeName} не найдена или нет изображений цветов`);
-        return;
-    }
-
-    // Обновляем левый цветок
-    const leftFlower = document.querySelector('.redFlow');
-    if (leftFlower && theme.flowerImages.left) {
-        console.log(`Загрузка левого цветка: ${theme.flowerImages.left}`);
-        const tempImg = new Image();
-        tempImg.onload = function () {
-            leftFlower.style.backgroundImage = `url('${theme.flowerImages.left}')`;
-            leftFlower.style.backgroundSize = 'contain';
-            leftFlower.style.backgroundRepeat = 'no-repeat';
-            leftFlower.style.backgroundPosition = 'center';
-            console.log('Левый цветок успешно загружен');
-        };
-        tempImg.onerror = function () {
-            console.error(`Не удалось загрузить левый цветок: ${theme.flowerImages.left}`);
-        };
-        tempImg.src = theme.flowerImages.left;
-    }
-
-    // Обновляем правый цветок
-    const rightFlower = document.querySelector('.redFlowRig');
-    if (rightFlower && theme.flowerImages.right) {
-        console.log(`Загрузка правого цветка: ${theme.flowerImages.right}`);
-        const tempImg = new Image();
-        tempImg.onload = function () {
-            rightFlower.style.backgroundImage = `url('${theme.flowerImages.right}')`;
-            rightFlower.style.backgroundSize = 'contain';
-            rightFlower.style.backgroundRepeat = 'no-repeat';
-            rightFlower.style.backgroundPosition = 'center';
-            console.log('Правый цветок успешно загружен');
-        };
-        tempImg.onerror = function () {
-            console.error(`Не удалось загрузить правый цветок: ${theme.flowerImages.right}`);
-        };
-        tempImg.src = theme.flowerImages.right;
-    }
-}
-
-// Функция для обновления заголовка для сохраненной темы
-function updateTitleForSavedTheme(themeName) {
-    console.log(`Обновление заголовка для темы: ${themeName}`);
-
-    const titleElement = document.querySelector('.bigText.leftText');
-    if (!titleElement) {
-        console.warn('Элемент заголовка не найден');
-        return;
-    }
-
-    // Находим цвет из списка colors по имени темы
-    const colorData = colors.find(color => color.name.toUpperCase() === themeName);
-    if (colorData) {
-        titleElement.textContent = colorData.name.toUpperCase() + ',';
-        titleElement.style.color = colorData.hex;
-        console.log(`Заголовок обновлен: ${colorData.name}`);
-    } else {
-        // Если не нашли в списке colors, используем тему
-        const theme = colorThemes[themeName];
-        if (theme) {
-            titleElement.textContent = themeName + ',';
-            titleElement.style.color = theme.accentColor;
-            console.log(`Заголовок обновлен из темы: ${themeName}`);
-        }
-    }
-}
-
-
-// Обновленная функция updateAllBlocks
-function updateAllBlocks(colorIndex) {
-    console.log('Обновление всех блоков для цвета:', colors[colorIndex].name);
-
-    // Обновляем заголовок
-    const titleElement = document.querySelector('.bigText.leftText');
-    if (titleElement) {
-        titleElement.textContent = colors[colorIndex].name.toUpperCase() + ',';
-        titleElement.style.color = colors[colorIndex].hex;
-    }
-
-    // Обновляем описание личности
-    const leftBlock = document.querySelector('.leftDescr');
-    if (leftBlock && colors[colorIndex]) {
-        leftBlock.innerHTML = colors[colorIndex].description;
-    }
-
-    // Обновляем описание музыки
-    const middleBlock = document.querySelector('.middleDescr');
-    if (middleBlock && colorMusic[colorIndex]) {
-        middleBlock.innerHTML = colorMusic[colorIndex].description;
-
-        // Удаляем старый аудиоплеер
-        const oldPlayer = document.querySelector('.music-player-container');
-        if (oldPlayer) {
-            oldPlayer.remove();
-        }
-
-        // Добавляем новый аудиоплеер
-        const audioPlayer = createAudioPlayer(
-            colorMusic[colorIndex].audio,
-            colorMusic[colorIndex].hex,
-            colors[colorIndex].name
-        );
-
-        middleBlock.parentNode.appendChild(audioPlayer);
-    }
-
-    // Обновляем описание влияния
-    const rightBlock = document.querySelector('.rightDescr');
-    if (rightBlock && colorEffect[colorIndex]) {
-        rightBlock.innerHTML = colorEffect[colorIndex].description;
-    }
-
-    // Обновляем фон (только если нет сохраненной темы с главной)
-    const savedTheme = localStorage.getItem('selectedTheme');
-    if (!savedTheme) {
-        applyBackgroundFromColor(colorIndex);
-    }
-
-    // Обновляем цветы
-    updateFlowersForColor(colorIndex);
-
-    console.log('Все блоки обновлены');
-}
-
-// Обновленная функция updateFlowersForColor
-function updateFlowersForColor(colorIndex) {
-    if (colorIndex >= 0 && colorIndex < colors.length) {
-        const color = colors[colorIndex];
-        const themeColor = colorThemes[color.name.toUpperCase()];
-
-        if (themeColor && themeColor.flowerImages) {
-            console.log(`Обновление цветов для цвета: ${color.name}`);
-
-            // Обновляем левый цветок
-            const leftFlower = document.querySelector('.redFlow');
-            if (leftFlower && themeColor.flowerImages.left) {
-                console.log(`Загрузка левого цветка: ${themeColor.flowerImages.left}`);
-                const tempImg = new Image();
-                tempImg.onload = function () {
-                    leftFlower.style.backgroundImage = `url('${themeColor.flowerImages.left}')`;
-                    leftFlower.style.backgroundSize = 'contain';
-                    leftFlower.style.backgroundRepeat = 'no-repeat';
-                    leftFlower.style.backgroundPosition = 'center';
-                    console.log('Левый цветок обновлен');
-                };
-                tempImg.onerror = function () {
-                    console.error(`Не удалось загрузить левый цветок: ${themeColor.flowerImages.left}`);
-                };
-                tempImg.src = themeColor.flowerImages.left;
-            }
-
-            // Обновляем правый цветок
-            const rightFlower = document.querySelector('.redFlowRig');
-            if (rightFlower && themeColor.flowerImages.right) {
-                console.log(`Загрузка правого цветка: ${themeColor.flowerImages.right}`);
-                const tempImg = new Image();
-                tempImg.onload = function () {
-                    rightFlower.style.backgroundImage = `url('${themeColor.flowerImages.right}')`;
-                    rightFlower.style.backgroundSize = 'contain';
-                    rightFlower.style.backgroundRepeat = 'no-repeat';
-                    rightFlower.style.backgroundPosition = 'center';
-                    console.log('Правый цветок обновлен');
-                };
-                tempImg.onerror = function () {
-                    console.error(`Не удалось загрузить правый цветок: ${themeColor.flowerImages.right}`);
-                };
-                tempImg.src = themeColor.flowerImages.right;
-            }
-        }
-    }
-}
-
-// Обновленная функция applyBackgroundFromColor
-function applyBackgroundFromColor(colorIndex) {
-    // Проверяем, есть ли сохраненная тема с главной страницы
-    const savedTheme = localStorage.getItem('selectedTheme');
-
-    if (savedTheme) {
-        console.log('Есть сохраненная тема с главной страницы, не изменяем фон');
-        return; // Не меняем фон, если есть тема с главной страницы
-    }
-
-    if (colorIndex >= 0 && colorIndex < colors.length) {
-        const color = colors[colorIndex];
-        const themeColor = colorThemes[color.name.toUpperCase()];
-
-        if (themeColor) {
-            document.body.style.background =
-                `linear-gradient(${themeColor.bgGradient[0]}, ${themeColor.bgGradient[1]}, ${themeColor.bgGradient[2]})`;
-
-            console.log(`Фон изменен на тему: ${color.name}`);
-        }
-    }
-}
-
-// И в функции initResultsDropdown добавьте это:
-function populateDropdownOptions(dropdown) {
-    dropdown.innerHTML = '';
-
-    // Сначала проверим, есть ли сохраненная тема
-    const savedTheme = localStorage.getItem('selectedTheme');
-
-    colors.forEach((color, index) => {
-        const option = document.createElement('a');
-        option.href = '#';
-        option.className = 'results-option';
-        option.setAttribute('data-color', index);
-
-        option.style.textDecoration = 'none';
-        option.style.color = '#42383C';
-
-        // Если это сохраненная тема, выделим ее
-        if (savedTheme && color.name.toUpperCase() === savedTheme) {
+        // Определяем текущий цвет
+        const currentColorIndex = localStorage.getItem('testResult');
+        if (currentColorIndex && parseInt(currentColorIndex) === index) {
             option.style.backgroundColor = '#f0f0f0';
             option.style.fontWeight = 'bold';
         }
@@ -1508,14 +1218,15 @@ function populateDropdownOptions(dropdown) {
 
             console.log('Выбран цвет:', color.name, 'индекс:', index);
 
-            // Сохраняем выбранный цвет
+            // Сохраняем выбранный цвет как результат теста
             localStorage.setItem('testResult', index);
+            
+            // Очищаем тему с главной страницы, чтобы не мешала
+            localStorage.removeItem('selectedTheme');
+            localStorage.removeItem('themeData');
 
             // Обновляем блоки
             updateAllBlocks(index);
-
-            // НЕ перезаписываем тему с главной страницы
-            // Оставляем сохраненную тему как есть
 
             hideDropdown(dropdown);
 
@@ -1540,7 +1251,6 @@ function populateDropdownOptions(dropdown) {
 
     console.log('Dropdown заполнен опциями цветов:', colors.length);
 }
-
 
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 

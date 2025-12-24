@@ -635,14 +635,24 @@
     left: 67px;
 }
 
-.imgKS {
+.imgK {
     position: absolute;
-    width: 536.94px;
-    height: 583px;
+    width: 500px;
+    height: 512px;
     border-radius: 100px 0px 100px 0px;
-    background-image: url(images/тест/что\ будет/собак.jpg);
+    background-image: url(images/команда/кати.jpg);
     left: 77px;
     top: 27.5px;
+}
+
+.imgS {
+    position: absolute;
+    width: 500px;
+    height: 430px;
+    border-radius: 100px 0px 100px 0px;
+    background-image: url(images/команда/софа.jpg);
+    left: 77px;
+    top: 60px;
 }
 
 .aboutKS {
@@ -708,12 +718,12 @@
 
 .imgA {
     position: absolute;
-    width: 536.94px;
-    height: 583px;
+    width: 454px;
+    height: 430px;
     border-radius: 100px 0px 100px 0px;
-    background-image: url(images/тест/что\ будет/собак.jpg);
-    right: 70px;
-    top: 3px;
+    background-image: url(images/команда/аля.jpg);
+    right: 100px;
+    top: 70px;
 }
 
 .aboutA {
