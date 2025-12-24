@@ -216,10 +216,10 @@
 
 .redFlow {
     margin-left: 29px;
-    margin-top: -20px;
-    width: 492.85px;
-    height: 397.02px;
-    background-image: url(images/ЛевЧасть/ЦветыЛевКрасн.png);
+    margin-top: -80px;
+    width: 500px;
+    height: 429px;
+    background-image: url(images/цветы/Красный/левый.png);
     position: relative;
 }
 
@@ -234,7 +234,7 @@
     margin-left: 523px;
     margin-top: 85px;
     width: 708px;
-    height: 470px;
+    height: 420px;
     background-image: url(images/ПравЧасть/Прямоугольник.png);
     position: relative;
 }
@@ -242,9 +242,9 @@
 .redFlowRig {
     margin-left: 1030px;
     margin-top: -160px;
-    width: 208.34px;
-    height: 279.98px;
-    background-image: url(images/ПравЧасть/ЦветыПравКрасн.png);
+    width: 243px;
+    height: 280px;
+    background-image: url(images/цветы/Красный/правый.png);
     position: relative;
 }
 
@@ -261,7 +261,7 @@
 }
 
 .top {
-    margin-top: 80px;
+    margin-top: 169px;
 }
 
 .bigText {
@@ -272,7 +272,7 @@
     position: absolute;
     z-index: 10;
     white-space: nowrap;
-    margin-top: 140px;
+    margin-top: 42px;
 }
 
 .buttonText {
@@ -316,7 +316,7 @@
 }
 
 .hyphen {
-    margin-left: 130px;
+    margin-left: 0px;
     margin-top: 210px;
     width: 75px;
     height: 3px;
@@ -327,7 +327,7 @@
 .textText {
     position: absolute;
     margin-top: 174px;
-    margin-left: 230px;
+    margin-left: 127px;
 }
 
 .resText {
@@ -337,6 +337,7 @@
     position: absolute;
     margin-top: 284px;
     margin-left: 85px;
+    width: 450px;
 }
 
 .blockResults {
@@ -420,8 +421,6 @@
     margin-left: 75px;
     position: absolute;
 }
-
-
 
 /*Нижняя часть сайта*/
 .footer {

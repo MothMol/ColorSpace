@@ -1,8 +1,12 @@
+// Прокрутка наверх при загрузке страницы
 window.scrollTo(0, 0);
+
+// Масштабирование страницы
 document.addEventListener('DOMContentLoaded', function () {
     document.body.style.zoom = "0.85";
 });
 
+// Основная функция
 document.addEventListener('DOMContentLoaded', function () {
 
     // ФОНОВАЯ МУЗЫКА 
@@ -18,31 +22,21 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         volume: 0.5,
         isPlaying: false,
-        userInteracted: false, // Флаг взаимодействия пользователя
+        userInteracted: false,
 
         // Инициализация музыки
         init: function () {
             console.log('Инициализация фоновой музыки...');
-
-            // Восстанавливаем состояние
             this.loadState();
-
-            // Создаем кнопку для запуска музыки
             this.createStartButton();
-
-            // Настраиваем обработчики взаимодействия
             this.setupInteractionListeners();
-
-            // Сохраняем состояние при закрытии
             window.addEventListener('beforeunload', () => this.saveState());
         },
 
         // Создание кнопки запуска музыки
         createStartButton: function () {
-            // Проверяем, есть ли уже кнопка музыки в меню
             const existingMusicButton = document.getElementById('music-button');
             if (existingMusicButton) {
-                // Используем существующую кнопку для запуска
                 existingMusicButton.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -54,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         this.togglePlayback();
                     }
 
-                    // Анимация нажатия
                     existingMusicButton.style.transform = 'scale(0.9)';
                     setTimeout(() => {
                         existingMusicButton.style.transform = 'scale(1)';
@@ -63,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 existingMusicButton.title = 'Кликните, чтобы включить фоновую музыку';
             } else {
-                // Создаем плавающую кнопку, если нет кнопки в меню
                 this.createFloatingButton();
             }
         },
@@ -73,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const musicButton = document.createElement('button');
             musicButton.id = 'floating-music-button';
 
-            // Используем изображение вместо текста
             const noteImg = document.createElement('img');
             noteImg.src = 'music/img/нота.png';
             noteImg.style.cssText = 'width: 24px; height: 24px;';
@@ -116,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!this.userInteracted) {
                     this.userInteracted = true;
                     this.startMusic();
-                    // Меняем иконку на старт
                     const startImg = document.createElement('img');
                     startImg.src = 'music/img/старт.png';
                     startImg.style.cssText = 'width: 24px; height: 24px;';
@@ -127,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     musicButton.title = 'Пауза';
                 } else {
                     this.togglePlayback();
-                    // Меняем иконку в зависимости от состояния
                     const imgSrc = this.audio.paused ? 'music/img/старт.png' : 'music/img/пауза.png';
                     const imgAlt = this.audio.paused ? 'Воспроизвести' : 'Пауза';
                     const img = document.createElement('img');
@@ -139,7 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     musicButton.title = imgAlt;
                 }
 
-                // Анимация нажатия
                 musicButton.style.transform = 'scale(0.9)';
                 setTimeout(() => {
                     musicButton.style.transform = 'scale(1)';
@@ -148,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.body.appendChild(musicButton);
 
-            // Обновляем иконку при загрузке, если музыка уже играет
             setTimeout(() => {
                 if (this.audio && !this.audio.paused) {
                     const pauseImg = document.createElement('img');
@@ -164,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Настройка обработчиков взаимодействия
         setupInteractionListeners: function () {
-            // События, которые считаются взаимодействием
             const interactionEvents = ['click', 'keydown', 'mousedown', 'touchstart'];
 
             interactionEvents.forEach(eventType => {
@@ -173,16 +159,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         this.userInteracted = true;
                         console.log('Пользователь взаимодействовал с документом');
                     }
-                }, { once: true }); // Только один раз
+                }, { once: true });
             });
 
-            // Также запускаем музыку при клике на любую кнопку выбора цвета
             document.addEventListener('click', (e) => {
                 if (e.target.closest('.colorButton')) {
                     if (!this.userInteracted) {
                         this.userInteracted = true;
                         this.startMusic();
-                        // Обновляем иконку плавающей кнопки
                         const musicButton = document.getElementById('floating-music-button');
                         if (musicButton) {
                             const startImg = document.createElement('img');
@@ -202,18 +186,14 @@ document.addEventListener('DOMContentLoaded', function () {
         startMusic: function () {
             console.log('Запуск музыки после взаимодействия пользователя...');
 
-            // Проверяем сохраненное состояние
             const savedTrack = this.getSavedTrack();
 
             if (savedTrack && this.tracks.includes(savedTrack)) {
-                // Воспроизводим сохраненный трек
                 this.playTrack(savedTrack, true);
             } else {
-                // Начинаем со случайного трека
                 this.playRandomTrack();
             }
 
-            // Обновляем иконку плавающей кнопки
             const musicButton = document.getElementById('floating-music-button');
             if (musicButton) {
                 const startImg = document.createElement('img');
@@ -284,11 +264,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const state = JSON.parse(savedState);
                     console.log('Загружено сохраненное состояние музыки:', state);
 
-                    // Проверяем, что трек существует
                     if (state.track && this.tracks.includes(state.track)) {
                         this.currentTrack = state.track;
                         this.volume = state.volume || 0.5;
-                        this.userInteracted = true; // Разрешаем автозапуск
+                        this.userInteracted = true;
                     }
                 }
             } catch (e) {
@@ -300,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
         playRandomTrack: function () {
             console.log('Воспроизведение случайного трека...');
 
-            // Выбираем случайный трек (исключая текущий, если есть)
             let availableTracks = [...this.tracks];
             if (this.currentTrack) {
                 availableTracks = availableTracks.filter(track => track !== this.currentTrack);
@@ -318,19 +296,16 @@ document.addEventListener('DOMContentLoaded', function () {
         playTrack: function (trackPath, restoreTime = false) {
             console.log(`Загрузка трека: ${trackPath}`);
 
-            // Останавливаем текущее воспроизведение
             if (this.audio) {
                 this.audio.pause();
                 this.audio = null;
             }
 
-            // Создаем новый аудиоэлемент
             this.audio = new Audio(trackPath);
             this.audio.volume = this.volume;
             this.audio.loop = false;
             this.currentTrack = trackPath;
 
-            // Восстанавливаем время, если нужно
             if (restoreTime) {
                 const savedTime = this.getSavedTime();
                 if (savedTime > 0) {
@@ -339,13 +314,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Обработчики событий
             this.audio.addEventListener('play', () => {
                 console.log(`Начало воспроизведения: ${trackPath}`);
                 this.isPlaying = true;
                 this.saveState();
 
-                // Обновляем иконку плавающей кнопки
                 const musicButton = document.getElementById('floating-music-button');
                 if (musicButton) {
                     const startImg = document.createElement('img');
@@ -363,7 +336,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.isPlaying = false;
                 this.saveState();
 
-                // Обновляем иконку плавающей кнопки
                 const musicButton = document.getElementById('floating-music-button');
                 if (musicButton) {
                     const pauseImg = document.createElement('img');
@@ -387,7 +359,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.playNextTrack();
             });
 
-            // Пытаемся воспроизвести
             this.playAudio();
         },
 
@@ -405,11 +376,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     .catch(error => {
                         console.warn('Ошибка воспроизведения:', error.name);
 
-                        // Если ошибка автозапуска, ждем взаимодействия
                         if (error.name === 'NotAllowedError') {
                             console.log('Ждем взаимодействия пользователя...');
 
-                            // Показываем сообщение только если пользователь еще не взаимодействовал
                             if (!this.userInteracted) {
                                 this.showMusicHint();
                             }
@@ -441,7 +410,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 backdrop-filter: blur(5px);
             `;
 
-            // Используем изображение в подсказке
             const noteImg = document.createElement('img');
             noteImg.src = 'music/img/нота.png';
             noteImg.style.cssText = 'width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; filter: invert(1);';
@@ -461,7 +429,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.body.appendChild(hint);
 
-            // Автоматически убираем через 15 секунд
             setTimeout(() => {
                 if (document.body.contains(hint)) {
                     hint.remove();
@@ -719,12 +686,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция для инициализации голосов
     function initSpeechSynthesis() {
-        // Ждем загрузки голосов
         speechSynthesis.onvoiceschanged = function () {
             voices = speechSynthesis.getVoices();
             console.log("Доступные голоса:", voices.length);
 
-            // Ищем русский голос
             const russianVoices = voices.filter(voice =>
                 voice.lang.includes('ru') || voice.name.includes('Russian')
             );
@@ -732,12 +697,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (russianVoices.length > 0) {
                 console.log("Найден русский голос:", russianVoices[0].name);
             } else {
-                console.warn("Русский голос не найден. Будут использованы доступные голоса.");
+                console.warn("Русский голос не найден.");
                 isSpeechEnabled = false;
             }
         };
 
-        // Проверяем поддержку браузером
         if (!speechSynthesis) {
             console.warn("Браузер не поддерживает синтез речи");
             isSpeechEnabled = false;
@@ -748,17 +712,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function speakText(text, lang = 'ru-RU') {
         if (!isSpeechEnabled) return;
 
-        // Останавливаем предыдущее воспроизведение
         speechSynthesis.cancel();
 
-        // Создаем новое высказывание
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = lang;
-        utterance.rate = 0.9; // Скорость речи (0.1 - 10)
-        utterance.pitch = 1.0; // Высота тона (0 - 2)
-        utterance.volume = 1.0; // Громкость (0 - 1)
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
 
-        // Ищем русский голос
         const russianVoices = voices.filter(voice =>
             voice.lang.includes('ru') || voice.name.includes('Russian')
         );
@@ -767,7 +728,6 @@ document.addEventListener('DOMContentLoaded', function () {
             utterance.voice = russianVoices[0];
         }
 
-        // Обработчики событий
         utterance.onstart = function () {
             console.log("Начало речи:", text);
         };
@@ -780,7 +740,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error("Ошибка синтеза речи:", event);
         };
 
-        // Запускаем синтез речи
         speechSynthesis.speak(utterance);
     }
 
@@ -814,6 +773,10 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('selectedTheme', themeName);
             localStorage.setItem('themeData', JSON.stringify(theme));
 
+            // СИНХРОНИЗАЦИЯ ДЛЯ СТРАНИЦЫ РЕЗУЛЬТАТОВ
+            // Сохраняем специальный флаг для синхронизации
+            localStorage.setItem('themeSynced', 'true');
+            
             // Обновляем ссылку на тест с параметром темы
             updateTestLink(themeName);
 
@@ -873,7 +836,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (element) {
                 console.log(`Пытаемся установить: ${item.image}`);
 
-                // Создаем временный элемент для проверки загрузки
                 const tempImg = new Image();
 
                 tempImg.onload = function () {
@@ -883,7 +845,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 tempImg.onerror = function () {
                     console.error(`Не удалось загрузить изображение по умолчанию: ${item.image}`);
-                    // Пробуем альтернативный путь
                     const altPath = item.image.replace('тест/что будет/Без/', '');
                     console.log(`Пробуем альтернативный путь: ${altPath}`);
 
@@ -914,7 +875,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(`Обновление изображений для темы: ${themeName}`, theme.resultImages);
 
-        // Обновляем основные изображения
         const mainImagesToUpdate = [
             { element: '.result1', key: 'личность', fallback: 'images/тест/что будет/Без/личность.jpg' },
             { element: '.result2', key: 'влияние', fallback: 'images/тест/что будет/Без/влияние.jpg' },
@@ -929,22 +889,18 @@ document.addEventListener('DOMContentLoaded', function () {
             if (element) {
                 console.log(`Попытка загрузки: ${theme.resultImages[item.key]}`);
 
-                // Создаем временный элемент img для проверки загрузки
                 const tempImg = new Image();
 
-                // Обработчик успешной загрузки
                 tempImg.onload = function () {
                     console.log(`Изображение загружено: ${theme.resultImages[item.key]}`);
                     element.style.backgroundImage = `url('${theme.resultImages[item.key]}')`;
                 };
 
-                // Обработчик ошибки загрузки
                 tempImg.onerror = function () {
                     console.warn(`Не удалось загрузить изображение: ${theme.resultImages[item.key]}`);
                     console.log(`Используем fallback: ${item.fallback}`);
                     element.style.backgroundImage = `url('${item.fallback}')`;
 
-                    // Проверяем существует ли fallback
                     const fallbackImg = new Image();
                     fallbackImg.onerror = function () {
                         console.error(`Fallback изображение тоже не найдено: ${item.fallback}`);
@@ -953,7 +909,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     fallbackImg.src = item.fallback;
                 };
 
-                // Начинаем загрузку
                 tempImg.src = theme.resultImages[item.key];
             } else {
                 console.warn(`Элемент не найден: ${item.element}`);
@@ -982,7 +937,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Сбрасываем цвет текстов
         const wotTextElements = document.querySelectorAll('.wot-text, .postsKSA');
         wotTextElements.forEach(element => {
-            element.style.color = ''; // Удаляем цвет, возвращаем к CSS
+            element.style.color = '';
         });
 
         // Устанавливаем изображения по умолчанию с абсолютными путями
@@ -1022,7 +977,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const colorNameElement = document.getElementById('selected-color-text');
         if (colorNameElement) {
             colorNameElement.textContent = 'ВЫБЕРИТЕ';
-            colorNameElement.style.color = ''; // Сбрасываем цвет текста
+            colorNameElement.style.color = '';
         }
 
         // Сбрасываем выделение кнопок цвета
@@ -1038,6 +993,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Очищаем localStorage
         localStorage.removeItem('selectedTheme');
         localStorage.removeItem('themeData');
+        localStorage.removeItem('themeSynced'); // Удаляем флаг синхронизации
 
         // Обновляем ссылку на тест (убираем параметр темы)
         const testLink = document.querySelector('.testButton');
@@ -1057,7 +1013,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500);
         }
 
-        // Выводим в консоль для отладки
         console.log("Все темы сброшены, изображения должны быть восстановлены");
     }
 
@@ -1086,11 +1041,9 @@ document.addEventListener('DOMContentLoaded', function () {
             button.setAttribute('data-color-name', color.displayName);
             button.setAttribute('data-text-color', color.textColor);
 
-            // Используем изображения для кнопок
             button.style.backgroundImage = `url(images/кнопкиЦвет/${color.name}.jpg)`;
             button.style.boxShadow = `0 5px 25px ${color.bgColor}80`;
 
-            // ВОЗВРАЩАЕМ АНИМАЦИЮ ПУЛЬСАЦИИ ПРИ НАВЕДЕНИИ
             button.addEventListener('mouseenter', function () {
                 this.style.animation = 'pulse 2s ease-in-out infinite';
                 this.style.transform = 'scale(1.03)';
@@ -1103,22 +1056,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Добавляем обработчик клика
             button.addEventListener('click', function () {
                 const themeName = this.getAttribute('data-color-name');
                 console.log(`Предпросмотр темы: ${themeName}`);
 
-                // Применяем тему для предпросмотра
                 applyTheme(themeName, true);
 
-                // Озвучиваем выбор цвета
                 if (isSpeechEnabled) {
                     setTimeout(() => {
                         speakSelectedColor(themeName);
                     }, 100);
                 }
 
-                // Запускаем музыку при первом клике на кнопку цвета
                 if (window.backgroundMusic && !window.backgroundMusic.userInteracted) {
                     window.backgroundMusic.userInteracted = true;
                     window.backgroundMusic.startMusic();
@@ -1174,14 +1123,12 @@ document.addEventListener('DOMContentLoaded', function () {
             currentIndex = (currentIndex + 1) % 3;
             updateDisplay();
 
-            // Запускаем музыку при первом клике на кнопку "click here"
             if (window.backgroundMusic && !window.backgroundMusic.userInteracted) {
                 window.backgroundMusic.userInteracted = true;
                 window.backgroundMusic.startMusic();
             }
         });
 
-        // Добавляем клик по кружкам
         circles.forEach((circle, index) => {
             circle.addEventListener('click', function () {
                 currentIndex = index;
@@ -1200,12 +1147,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         colorButtons.forEach(button => {
             button.addEventListener('click', function () {
-                // Убираем выделение с предыдущей кнопки
                 if (selectedButton) {
                     selectedButton.style.transform = 'scale(1)';
                 }
 
-                // Выделяем новую кнопку
                 this.style.transform = 'scale(1.05)';
                 selectedButton = this;
 
@@ -1216,14 +1161,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 colorNameElement.style.color = textColor;
                 selectedTheme = colorName;
 
-                // Озвучиваем выбор цвета
                 if (isSpeechEnabled) {
                     setTimeout(() => {
                         speakSelectedColor(colorName);
                     }, 100);
                 }
 
-                // Для отладки
                 console.log(`Выбрана тема: ${colorName}`);
             });
         });
@@ -1232,10 +1175,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedTheme) {
                 console.log(`Применение темы: ${selectedTheme}`);
 
-                // Применяем полную тему (не preview)
                 applyTheme(selectedTheme, false);
 
-                // ВОЗВРАЩАЕМ АНИМАЦИЮ КНОПКИ ПОДТВЕРЖДЕНИЯ
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
@@ -1252,7 +1193,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const clearButton = document.getElementById('clear-button');
 
         if (clearButton) {
-            // ВОЗВРАЩАЕМ АНИМАЦИИ ДЛЯ КНОПКИ CLEAR
             const originalBgColor = '#FFFFFF';
             const originalTextColor = '#42383C';
 
@@ -1287,7 +1227,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             clearButton.addEventListener('click', function () {
-                // Анимация нажатия
                 this.style.transform = 'translateY(0) scale(0.96)';
 
                 const buttonText = this.querySelector('.button-text');
@@ -1295,12 +1234,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     buttonText.style.color = '#FFFFFF';
                 }
 
-                // Небольшая задержка для завершения анимации
                 setTimeout(() => {
-                    // Выполняем сброс темы
                     resetToDefaultTheme();
 
-                    // Возвращаем к исходному виду
                     this.style.transform = 'translateY(0)';
                     this.style.backgroundColor = originalBgColor;
 
@@ -1314,20 +1250,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция для добавления анимаций ко всем кнопкам
     function initButtonAnimations() {
-        // Добавляем CSS transitions для плавности
         const style = document.createElement('style');
         style.textContent = `
-            /* Плавные переходы для всех кнопок */
             .Button, .buttonKS, .buttonA, .link-text, .clearButton {
                 transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
             }
             
-            /* Плавные переходы для кнопок выбора цвета */
             .colorButton {
                 transition: all 0.3s ease-in-out !important;
             }
             
-            /* Плавный переход для смены изображений */
             .result1, .result2, .result3, .flower, .lineTop, .lineBottom {
                 transition: background-image 0.5s ease-in-out !important;
             }
@@ -1336,7 +1268,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
             }
             
-            /* Анимация пульсации для кнопок цвета */
             @keyframes pulse {
                 0% { 
                     transform: scale(1); 
@@ -1354,10 +1285,8 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         document.head.appendChild(style);
 
-        // ВОЗВРАЩАЕМ АНИМАЦИИ ДЛЯ ОСНОВНЫХ КНОПОК "click here" и "confirm"
         const mainButtons = document.querySelectorAll('.Button');
         mainButtons.forEach(button => {
-            // Сохраняем оригинальные стили
             const originalBgColor = button.style.backgroundColor || '#FFFFFF';
             const originalTransform = button.style.transform || 'translateY(0)';
 
@@ -1383,7 +1312,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // ВОЗВРАЩАЕМ АНИМАЦИИ ДЛЯ НАВИГАЦИОННЫХ ССЫЛОК
         const navLinks = document.querySelectorAll('.link-text');
         navLinks.forEach(link => {
             const originalColor = link.style.color || '#42383C';
